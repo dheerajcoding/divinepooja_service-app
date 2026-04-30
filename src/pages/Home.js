@@ -1,14 +1,30 @@
 import React from 'react';
 import { Container, Typography, Button, Grid, Card, CardContent, CardMedia, Box, Paper, Chip, Rating, Avatar, List, ListItem, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { dummyPoojas, testimonials, packages, stats } from '../data';
+import { useData } from '../context/DataContext';
 import StarIcon from '@mui/icons-material/Star';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import PhoneIcon from '@mui/icons-material/Phone';
+import { siteConfig } from '../config';
+import { buildInquiryMessage, openWhatsApp } from '../utils/inquiry';
+
+const handleBookPackage = (pkg) => {
+  openWhatsApp(
+    buildInquiryMessage({
+      subject: `Package booking: ${pkg.name}`,
+      poojaName: `${pkg.name} (${pkg.poojas.join(', ')})`,
+      price: pkg.discountedPrice,
+      message: `I would like to book the ${pkg.name}.`,
+    })
+  );
+};
 
 const Home = () => {
+  const { poojas: dummyPoojas, testimonials, packages, stats } = useData();
   const popularPoojas = dummyPoojas.filter(pooja => pooja.isPopular);
 
   return (
@@ -180,7 +196,7 @@ const Home = () => {
                       </ListItem>
                     ))}
                   </List>
-                  <Button variant="contained" fullWidth sx={{ mt: 2, backgroundColor: '#FF9933', '&:hover': { backgroundColor: '#FFD700', color: '#2C1810' } }}>
+                  <Button variant="contained" fullWidth onClick={() => handleBookPackage(pkg)} startIcon={<WhatsAppIcon />} sx={{ mt: 2, backgroundColor: '#25D366', '&:hover': { backgroundColor: '#1ebe5d' } }}>
                     Book Package
                   </Button>
                 </CardContent>
@@ -521,8 +537,9 @@ const Home = () => {
             </Button>
             <Button
               variant="outlined"
-              component={Link}
-              to="/contact"
+              component="a"
+              href={`tel:${siteConfig.contact.phoneIntl}`}
+              startIcon={<PhoneIcon />}
               sx={{
                 borderColor: '#FF9933',
                 color: '#FF9933',
@@ -539,7 +556,7 @@ const Home = () => {
                 },
               }}
             >
-              📞 Call for Instant Booking
+              Call {siteConfig.contact.phone}
             </Button>
           </Box>
         </Paper>

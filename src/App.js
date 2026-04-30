@@ -16,6 +16,10 @@ import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import InstallPrompt from './components/InstallPrompt';
+import ScrollToTop from './components/ScrollToTop';
+import WhatsAppFab from './components/WhatsAppFab';
+import NotFound from './pages/NotFound';
+import { DataProvider } from './context/DataContext';
 
 const theme = createTheme({
   palette: {
@@ -161,25 +165,30 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <Navbar />
-          <Box sx={{ flex: 1 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/poojas" element={<PoojaList />} />
-              <Route path="/pooja/:id" element={<PoojaDetail />} />
-              <Route path="/booking/:id" element={<Booking />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/confirmation" element={<BookingConfirmation />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/packages" element={<Packages />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
+        <DataProvider>
+          <ScrollToTop />
+          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Navbar />
+            <Box sx={{ flex: 1 }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/poojas" element={<PoojaList />} />
+                <Route path="/pooja/:id" element={<PoojaDetail />} />
+                <Route path="/booking/:id" element={<Booking />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/confirmation" element={<BookingConfirmation />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/packages" element={<Packages />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Box>
+            <Footer />
+            <WhatsAppFab />
+            <InstallPrompt />
           </Box>
-          <Footer />
-          <InstallPrompt />
-        </Box>
+        </DataProvider>
       </ThemeProvider>
     </Router>
   );

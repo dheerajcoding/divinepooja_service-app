@@ -1,10 +1,24 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent, Box, Button, Chip, List, ListItem, ListItemText, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { packages } from '../data';
+import { useData } from '../context/DataContext';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { buildInquiryMessage, openWhatsApp } from '../utils/inquiry';
+
+const handleBookPackage = (pkg) => {
+  openWhatsApp(
+    buildInquiryMessage({
+      subject: `Package booking: ${pkg.name}`,
+      poojaName: `${pkg.name} (${pkg.poojas.join(', ')})`,
+      price: pkg.discountedPrice,
+      message: `I would like to book the ${pkg.name}.`,
+    })
+  );
+};
 
 const Packages = () => {
+  const { packages } = useData();
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF8DC', py: 4 }}>
       <Container maxWidth="lg">
@@ -116,18 +130,17 @@ const Packages = () => {
                     variant="contained"
                     fullWidth
                     size="large"
+                    onClick={() => handleBookPackage(pkg)}
+                    startIcon={<WhatsAppIcon />}
                     sx={{
-                      backgroundColor: '#FF9933',
+                      backgroundColor: '#25D366',
                       fontWeight: 'bold',
                       py: 1.5,
                       fontSize: '1.1rem',
-                      '&:hover': {
-                        backgroundColor: '#FFD700',
-                        color: '#2C1810',
-                      },
+                      '&:hover': { backgroundColor: '#1ebe5d' },
                     }}
                   >
-                    Book This Package
+                    Request This Package
                   </Button>
                 </CardContent>
               </Card>

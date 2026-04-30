@@ -4,7 +4,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarIcon from '@mui/icons-material/Star';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import GroupsIcon from '@mui/icons-material/Groups';
 
@@ -64,27 +63,6 @@ const About = () => {
       specialization: 'Vishnu & Peace Poojas',
       image: '/images/image16.jpg',
       languages: ['Hindi', 'English', 'Bengali']
-    }
-  ];
-
-  const awards = [
-    {
-      title: 'Best Spiritual Service Provider 2024',
-      organization: 'Spiritual Excellence Awards',
-      year: '2024',
-      icon: <WorkspacePremiumIcon sx={{ color: '#FFD700', fontSize: 40 }} />
-    },
-    {
-      title: 'Customer Choice Award',
-      organization: 'Religious Services Council',
-      year: '2023',
-      icon: <StarIcon sx={{ color: '#FFD700', fontSize: 40 }} />
-    },
-    {
-      title: 'Excellence in Vedic Traditions',
-      organization: 'Hindu Cultural Foundation',
-      year: '2022',
-      icon: <AccountBalanceIcon sx={{ color: '#FFD700', fontSize: 40 }} />
     }
   ];
 
@@ -339,46 +317,6 @@ const About = () => {
                   <Typography variant="body2" sx={{ color: '#4a5568', mb: 2 }}>
                     <strong>Languages:</strong> {member.languages.join(', ')}
                   </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-
-        {/* Awards Section */}
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', color: '#1a365d', fontWeight: 'bold', mb: 4 }}>
-          🏆 Awards & Recognition
-        </Typography>
-        <Grid container spacing={3} sx={{ mb: 6 }}>
-          {awards.map((award, index) => (
-            <Grid item key={index} xs={12} md={4}>
-              <Card
-                sx={{
-                  textAlign: 'center',
-                  background: 'linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)',
-                  border: '2px solid #2b6cb0',
-                  borderRadius: 3,
-                  height: '100%',
-                }}
-              >
-                <CardContent sx={{ p: 3 }}>
-                  <Box sx={{ mb: 2 }}>
-                    {award.icon}
-                  </Box>
-                  <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
-                    {award.title}
-                  </Typography>
-                  <Typography variant="subtitle1" sx={{ color: '#4a5568', mb: 1 }}>
-                    {award.organization}
-                  </Typography>
-                  <Chip
-                    label={award.year}
-                    sx={{
-                      backgroundColor: '#1a365d',
-                      color: 'white',
-                      fontWeight: 'bold'
-                    }}
-                  />
                 </CardContent>
               </Card>
             </Grid>

@@ -1,70 +1,176 @@
-# Getting Started with Create React App
+# 🕉️ Divine Pooja Services
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A trustworthy, mobile-friendly website where everyday families can browse poojas,
+view transparent pricing, and **book a pandit in one tap on WhatsApp**.
 
-## Available Scripts
+Built with **React 19 + Material UI 7** and ready to deploy to any static host
+(Netlify, Vercel, GitHub Pages, S3, Cloudflare Pages, etc.).
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🪔 Catalogue of poojas with pricing, benefits and samagri lists
+- 📦 Special pooja packages with savings
+- 📞 **Get In Touch** form that submits via **WhatsApp + Email** (no backend required)
+- 🟢 Floating WhatsApp button on every page
+- 🙏 Booking request flow that opens WhatsApp pre-filled with all details
+- 📱 PWA installable, mobile-first, fast
+- 🔍 SEO ready — meta tags, Open Graph, Twitter card, LocalBusiness JSON-LD
+- 🎨 Saffron / gold traditional theme, MUI components, accessible
+- 🛣️ Client-side routing with proper 404 page and scroll-to-top
+- ⚙️ All branding & contact info driven by `.env` — no code edits needed to rebrand
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🚀 Quick start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# 1. Install dependencies
+npm install
 
-### `npm run build`
+# 2. Configure your business details
+cp .env.example .env
+# then edit .env with your phone, email, WhatsApp number, etc.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 3. Run locally
+npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 4. Build for production
+npm run build
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 5. (optional) Preview the production build locally
+npm run serve
+```
 
-### `npm run eject`
+Open <http://localhost:3000>.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚙️ Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+All branding, contact information and the optional inquiry endpoint are read
+from environment variables (see [`.env.example`](.env.example)). The most
+important ones:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Variable | Purpose |
+|---|---|
+| `REACT_APP_BRAND_NAME` | Brand shown in navbar / footer / SEO |
+| `REACT_APP_PHONE` | Display phone number |
+| `REACT_APP_PHONE_INTL` | Phone in `+CCXXXXXXXXXX` format used by `tel:` links |
+| `REACT_APP_WHATSAPP` | WhatsApp number digits only (e.g. `919876543210`) |
+| `REACT_APP_EMAIL` | Contact email (used by `mailto:` links) |
+| `REACT_APP_INQUIRY_ENDPOINT` | *(Optional)* JSON POST endpoint, e.g. a [Formspree](https://formspree.io) / [Web3Forms](https://web3forms.com) URL — gives you a copy of every inquiry by email |
 
-## Learn More
+After changing `.env`, restart `npm start` (and rebuild for production).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📨 How inquiries reach you
 
-### Code Splitting
+When a visitor submits the **Contact** form or **Booking** request:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. The form is validated client-side.
+2. If `REACT_APP_INQUIRY_ENDPOINT` is set, the data is POSTed there (you get an
+   email/log in your inbox / dashboard).
+3. **WhatsApp opens** with a pre-filled message containing all the details —
+   so even with no backend, every lead lands directly in your WhatsApp.
+4. There is also an **Email Us** fallback button that opens the user's mail
+   client.
 
-### Analyzing the Bundle Size
+This means the site is **fully functional from day one** without any server.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🌐 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Any static host works. The included `public/_redirects` ensures client-side
+routes work on Netlify-style hosts.
 
-### Advanced Configuration
+### Netlify / Vercel / Cloudflare Pages
+- Build command: `npm run build`
+- Publish directory: `build`
+- Set the same environment variables you used in `.env` in the host's dashboard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### GitHub Pages
+```bash
+npm run build
+# then push the `build/` folder to the `gh-pages` branch
+```
 
-### Deployment
+### Manual / S3
+Upload the contents of `build/` to your bucket / web server and ensure all
+unknown routes fall back to `index.html`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🗂️ Project structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+src/
+├── App.js                  # Routes + MUI theme
+├── config.js               # Brand & contact config (reads .env)
+├── data.js                 # Pooja, package, testimonial seed data
+├── components/
+│   ├── Navbar.js
+│   ├── Footer.js
+│   ├── WhatsAppFab.js      # Sticky WhatsApp button
+│   ├── ScrollToTop.js
+│   └── InstallPrompt.js    # PWA install banner
+├── pages/
+│   ├── Home.js
+│   ├── PoojaList.js / PoojaDetail.js
+│   ├── Packages.js
+│   ├── Booking.js / BookingConfirmation.js
+│   ├── Contact.js
+│   ├── About.js
+│   ├── Login.js / Admin.js # Stubs for future use
+│   └── NotFound.js
+└── utils/
+    └── inquiry.js          # WhatsApp + mailto + endpoint helpers
+```
+
+---
+
+## 🧹 Customising the pooja list
+
+Edit [`src/data.js`](src/data.js). Each entry supports:
+
+```js
+{
+  id: 1,
+  name: 'Satyanarayan Pooja',
+  description: '...',
+  duration: 3,                    // hours
+  price: 2500,
+  originalPrice: 3000,
+  image: '/images/image15.png',   // place file in public/images
+  category: 'Prosperity',
+  benefits: ['Prosperity', ...],
+  samagri: ['Coconut', ...],
+  priest: 'Pandit Rajesh Sharma',
+  experience: '8 years',
+  languages: ['Hindi', 'Sanskrit'],
+  isPopular: true,
+  isOffer: true,
+}
+```
+
+Add new images to `public/images/` and reference them with `/images/your-file.jpg`.
+
+---
+
+## 🛡️ Security & privacy notes
+
+- No payment is collected on the site — bookings are confirmed manually after
+  a WhatsApp / phone conversation. This keeps PCI scope at zero.
+- The contact form does not store data in the browser.
+- All third-party links use `rel="noopener noreferrer"`.
+- Update the placeholder address / phone in `.env` before going live so you
+  don't expose `9876543210`.
+
+---
+
+## 📜 License
+
+Proprietary — © Divine Pooja Services.

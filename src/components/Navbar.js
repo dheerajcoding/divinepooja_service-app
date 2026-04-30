@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, Container, IconButton, Menu, MenuItem, useMediaQuery, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { siteConfig } from '../config';
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -108,27 +110,8 @@ const Navbar = () => {
                   </MenuItem>
                 ))}
                 <MenuItem
-                  component={Link}
-                  to="/login"
-                  onClick={handleClose}
-                  sx={{
-                    color: '#FF9933',
-                    border: '2px solid #FF9933',
-                    mx: 1,
-                    my: 0.5,
-                    borderRadius: 1,
-                    fontWeight: 'bold',
-                    '&:hover': {
-                      backgroundColor: '#FF9933',
-                      color: 'white',
-                    },
-                  }}
-                >
-                  Login
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to="/admin"
+                  component="a"
+                  href={`tel:${siteConfig.contact.phoneIntl}`}
                   onClick={handleClose}
                   sx={{
                     backgroundColor: '#FFD700',
@@ -137,13 +120,10 @@ const Navbar = () => {
                     my: 0.5,
                     borderRadius: 1,
                     fontWeight: 'bold',
-                    '&:hover': {
-                      backgroundColor: '#FF9933',
-                      color: 'white',
-                    },
+                    '&:hover': { backgroundColor: '#FF9933', color: 'white' },
                   }}
                 >
-                  Admin
+                  Call {siteConfig.contact.phone}
                 </MenuItem>
               </Menu>
             </Box>
@@ -169,40 +149,21 @@ const Navbar = () => {
                 </Button>
               ))}
               <Button
-                component={Link}
-                to="/login"
-                variant="outlined"
-                sx={{
-                  color: 'white',
-                  borderColor: 'white',
-                  fontWeight: 600,
-                  ml: 1,
-                  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
-                  '&:hover': {
-                    backgroundColor: 'white',
-                    color: '#FF9933',
-                    borderColor: 'white',
-                  },
-                }}
-              >
-                Login
-              </Button>
-              <Button
-                component={Link}
-                to="/admin"
+                component="a"
+                href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="contained"
+                startIcon={<WhatsAppIcon />}
                 sx={{
-                  backgroundColor: '#FFD700',
-                  color: '#2C1810',
+                  backgroundColor: '#25D366',
+                  color: 'white',
                   fontWeight: 600,
                   ml: 1,
-                  '&:hover': {
-                    backgroundColor: 'white',
-                    color: '#FF9933',
-                  },
+                  '&:hover': { backgroundColor: '#1ebe5d' },
                 }}
               >
-                Admin
+                Book on WhatsApp
               </Button>
             </Box>
           )}

@@ -7,6 +7,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { siteConfig } from '../config';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,10 +29,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <FacebookIcon />, url: '#', color: '#1877F2' },
-    { icon: <InstagramIcon />, url: '#', color: '#E4405F' },
-    { icon: <WhatsAppIcon />, url: 'https://wa.me/919876543210', color: '#25D366' },
-  ];
+    siteConfig.social.facebook && { icon: <FacebookIcon />, url: siteConfig.social.facebook, color: '#1877F2', label: 'Facebook' },
+    siteConfig.social.instagram && { icon: <InstagramIcon />, url: siteConfig.social.instagram, color: '#E4405F', label: 'Instagram' },
+    { icon: <WhatsAppIcon />, url: `https://wa.me/${siteConfig.contact.whatsapp}`, color: '#25D366', label: 'WhatsApp' },
+  ].filter(Boolean);
 
   return (
     <Box
@@ -48,17 +49,17 @@ const Footer = () => {
           {/* Company Info */}
           <Grid item xs={12} md={4}>
             <Typography variant="h6" gutterBottom sx={{ color: '#FFD700', fontWeight: 'bold' }}>
-              🕉️ Divine Pooja Services
+              🕉️ {siteConfig.brand.name}
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, lineHeight: 1.6, color: '#FFE4B5' }}>
-              Bringing ancient spiritual traditions to your doorstep with devotion, authenticity,
-              and excellence. Serving over 892+ families for 1+ years.
+              {siteConfig.brand.tagline}
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
               {socialLinks.map((social, index) => (
                 <IconButton
                   key={index}
                   component="a"
+                  aria-label={social.label}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -123,21 +124,25 @@ const Footer = () => {
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <PhoneIcon sx={{ mr: 1, fontSize: 18, color: '#FFD700' }} />
-              <Typography variant="body2" sx={{ color: '#FFE4B5' }}>+91 9*****3210</Typography>
+              <Typography component="a" href={`tel:${siteConfig.contact.phoneIntl}`} variant="body2" sx={{ color: '#FFE4B5', textDecoration: 'none' }}>
+                {siteConfig.contact.phone}
+              </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <EmailIcon sx={{ mr: 1, fontSize: 18, color: '#FFD700' }} />
-              <Typography variant="body2" sx={{ color: '#FFE4B5' }}>info@divinepooja.com</Typography>
+              <Typography component="a" href={`mailto:${siteConfig.contact.email}`} variant="body2" sx={{ color: '#FFE4B5', textDecoration: 'none' }}>
+                {siteConfig.contact.email}
+              </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
               <LocationOnIcon sx={{ mr: 1, mt: 0.5, fontSize: 18, color: '#FFD700' }} />
               <Typography variant="body2" sx={{ color: '#FFE4B5' }}>
-                123 Temple Street<br />
-                Delhi City, SC 12345
+                {siteConfig.contact.addressLine1}<br />
+                {siteConfig.contact.addressLine2}
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic', color: '#FFE4B5' }}>
-              Mon-Sun: 6:00 AM - 9:00 PM
+              {siteConfig.contact.hours}
             </Typography>
           </Grid>
         </Grid>
@@ -147,10 +152,10 @@ const Footer = () => {
         {/* Bottom Section */}
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="body2" sx={{ mb: 1, color: '#a0aec0' }}>
-            © {currentYear} Divine Pooja Services. All rights reserved.
+            © {currentYear} {siteConfig.brand.name}. All rights reserved.
           </Typography>
           <Typography variant="caption" sx={{ color: '#718096' }}>
-            Made with ❤️ for spiritual wellness | Terms of Service | Privacy Policy
+            Made with ❤️ for spiritual wellness
           </Typography>
         </Box>
       </Container>

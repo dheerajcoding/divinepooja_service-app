@@ -1,11 +1,14 @@
 import React from 'react';
-import { Container, Typography, Card, CardContent, CardMedia, Button, Box, Chip, List, ListItem, ListItemText, Paper } from '@mui/material';
+import { Container, Typography, Card, CardContent, CardMedia, Button, Box, Chip, List, ListItem, ListItemText, Paper, Stack } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import { dummyPoojas } from '../data';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { useData } from '../context/DataContext';
+import { buildInquiryMessage, openWhatsApp } from '../utils/inquiry';
 
 const PoojaDetail = () => {
   const { id } = useParams();
-  const pooja = dummyPoojas.find(p => p.id === parseInt(id));
+  const { poojas } = useData();
+  const pooja = poojas.find(p => p.id === parseInt(id));
 
   if (!pooja) {
     return <Typography>Pooja not found</Typography>;
@@ -87,25 +90,42 @@ const PoojaDetail = () => {
             </Box>
 
             <Box sx={{ mt: 4, textAlign: 'center' }}>
-              <Button
-                variant="contained"
-                size="large"
-                component={Link}
-                to={`/booking/${pooja.id}`}
-                sx={{
-                  backgroundColor: '#FF9933',
-                  fontWeight: 'bold',
-                  px: 6,
-                  py: 1.5,
-                  fontSize: '1.1rem',
-                  '&:hover': {
-                    backgroundColor: '#FFD700',
-                    color: '#2C1810',
-                  },
-                }}
-              >
-                Book This Sacred Pooja
-              </Button>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
+                <Button
+                  variant="contained"
+                  size="large"
+                  component={Link}
+                  to={`/booking/${pooja.id}`}
+                  sx={{
+                    backgroundColor: '#FF9933',
+                    fontWeight: 'bold',
+                    px: 5,
+                    py: 1.5,
+                    fontSize: '1.1rem',
+                    '&:hover': { backgroundColor: '#FFD700', color: '#2C1810' },
+                  }}
+                >
+                  Request Booking
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  startIcon={<WhatsAppIcon />}
+                  onClick={() =>
+                    openWhatsApp(
+                      buildInquiryMessage({
+                        subject: `Inquiry about ${pooja.name}`,
+                        poojaName: pooja.name,
+                        price: pooja.price,
+                        message: `Please share more details about ${pooja.name}.`,
+                      })
+                    )
+                  }
+                  sx={{ borderColor: '#25D366', color: '#25D366', fontWeight: 'bold', px: 4, py: 1.5, '&:hover': { backgroundColor: 'rgba(37,211,102,0.08)', borderColor: '#1ebe5d' } }}
+                >
+                  Talk to Us
+                </Button>
+              </Stack>
             </Box>
           </CardContent>
         </Card>

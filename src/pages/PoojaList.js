@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent, CardMedia, Button, Box, Chip } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { dummyPoojas } from '../data';
+import { useData } from '../context/DataContext';
 
 const PoojaList = () => {
+  const { poojas: dummyPoojas } = useData();
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF8DC', py: 4 }}>
       <Container maxWidth="lg">
