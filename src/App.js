@@ -18,110 +18,129 @@ import Footer from './components/Footer';
 import InstallPrompt from './components/InstallPrompt';
 import ScrollToTop from './components/ScrollToTop';
 import WhatsAppFab from './components/WhatsAppFab';
+import MobileBottomBar from './components/MobileBottomBar';
 import NotFound from './pages/NotFound';
 import { DataProvider } from './context/DataContext';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FF9933', // Traditional saffron/orange
-      light: '#FFD700',
-      dark: '#CC7A00',
+      main: '#FF7700', // Rich spiritual saffron
+      light: '#FFA040',
+      dark: '#C65102',
     },
     secondary: {
-      main: '#FFD700', // Gold accent
-      light: '#FFE4B5',
-      dark: '#CCAA00',
+      main: '#E5A910', // Vedic temple gold
+      light: '#FFD966',
+      dark: '#A67907',
     },
     background: {
-      default: '#FFF8DC', // Traditional cream background
-      paper: '#ffffff', // Pure white for cards
+      default: '#FFFDF8', // Sacred cream background
+      paper: '#FFFFFF',
     },
     text: {
-      primary: '#2C1810', // Rich brown text
-      secondary: '#5D4E37', // Medium brown for secondary text
+      primary: '#1E110A', // Deep velvety dark brown
+      secondary: '#664E3D', // Warm earthy brown
     },
     success: {
-      main: '#38a169', // Professional green
+      main: '#25D366', // WhatsApp & success green
     },
     warning: {
-      main: '#d69e2e', // Professional amber
+      main: '#E5A910',
     },
     error: {
-      main: '#e53e3e', // Professional red
+      main: '#E53E3E',
     },
   },
   typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     h1: {
+      fontFamily: '"Cinzel", serif',
       fontWeight: 700,
-      fontSize: '2.5rem',
-      color: '#2C1810',
+      fontSize: '2.6rem',
+      color: '#1E110A',
+      letterSpacing: '0.02em',
     },
     h2: {
-      fontWeight: 600,
-      fontSize: '2rem',
-      color: '#2C1810',
+      fontFamily: '"Cinzel", serif',
+      fontWeight: 700,
+      fontSize: '2.1rem',
+      color: '#1E110A',
+      letterSpacing: '0.02em',
     },
     h3: {
+      fontFamily: '"Cinzel", serif',
       fontWeight: 600,
       fontSize: '1.75rem',
-      color: '#2C1810',
+      color: '#1E110A',
+      letterSpacing: '0.015em',
     },
     h4: {
+      fontFamily: '"Cinzel", serif',
       fontWeight: 600,
-      fontSize: '1.5rem',
-      color: '#2C1810',
+      fontSize: '1.45rem',
+      color: '#1E110A',
     },
     h5: {
+      fontFamily: '"Outfit", sans-serif',
       fontWeight: 600,
       fontSize: '1.25rem',
-      color: '#FF9933',
+      color: '#FF7700',
     },
     h6: {
+      fontFamily: '"Outfit", sans-serif',
       fontWeight: 600,
-      fontSize: '1rem',
-      color: '#FF9933',
+      fontSize: '1.05rem',
+      color: '#1E110A',
     },
     body1: {
+      fontFamily: '"Outfit", sans-serif',
       fontSize: '1rem',
-      lineHeight: 1.6,
+      lineHeight: 1.65,
     },
     body2: {
-      fontSize: '0.875rem',
-      lineHeight: 1.5,
+      fontFamily: '"Outfit", sans-serif',
+      fontSize: '0.9rem',
+      lineHeight: 1.55,
     },
     button: {
+      fontFamily: '"Outfit", sans-serif',
       textTransform: 'none',
       fontWeight: 600,
+      letterSpacing: '0.02em',
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
-          padding: '12px 24px',
+          borderRadius: 50,
+          padding: '10px 24px',
           fontSize: '0.95rem',
           fontWeight: 600,
+          transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: '0 4px 12px rgba(255, 153, 51, 0.3)',
+            transform: 'translateY(-2px)',
           },
         },
         contained: {
-          background: 'linear-gradient(135deg, #FF9933 0%, #FFD700 100%)',
+          background: 'linear-gradient(135deg, #FF7700 0%, #E5A910 100%)',
           color: '#FFFFFF',
+          boxShadow: '0 4px 14px rgba(255, 119, 0, 0.35)',
           '&:hover': {
-            background: 'linear-gradient(135deg, #E6892E 0%, #CCAA00 100%)',
+            background: 'linear-gradient(135deg, #E66A00 0%, #C6920D 100%)',
+            boxShadow: '0 6px 20px rgba(255, 119, 0, 0.45)',
           },
         },
         outlined: {
-          borderColor: '#FF9933',
-          color: '#FF9933',
+          borderColor: '#FF7700',
+          borderWidth: '1.5px',
+          color: '#FF7700',
           '&:hover': {
-            backgroundColor: 'rgba(255, 153, 51, 0.1)',
-            borderColor: '#E6892E',
+            backgroundColor: 'rgba(255, 119, 0, 0.08)',
+            borderColor: '#C65102',
+            borderWidth: '1.5px',
           },
         },
       },
@@ -129,13 +148,15 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          border: '1px solid #FFE4B5',
-          transition: 'all 0.3s ease',
+          borderRadius: 18,
+          boxShadow: '0 8px 24px rgba(198, 81, 2, 0.08)',
+          border: '1px solid rgba(229, 169, 16, 0.22)',
+          transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          overflow: 'hidden',
           '&:hover': {
-            boxShadow: '0 8px 25px rgba(255, 153, 51, 0.2)',
-            transform: 'translateY(-2px)',
+            boxShadow: '0 16px 36px -8px rgba(198, 81, 2, 0.2)',
+            transform: 'translateY(-5px)',
+            borderColor: 'rgba(229, 169, 16, 0.45)',
           },
         },
       },
@@ -143,17 +164,18 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          borderRadius: 16,
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#FF9933',
-          color: '#FFFFFF',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          backgroundColor: 'rgba(255, 119, 0, 0.94)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom: '1px solid rgba(255, 215, 0, 0.35)',
+          boxShadow: '0 4px 20px rgba(198, 81, 2, 0.15)',
         },
       },
     },
@@ -169,7 +191,7 @@ function App() {
           <ScrollToTop />
           <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Navbar />
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, pb: { xs: '70px', md: 0 } }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/poojas" element={<PoojaList />} />
@@ -186,6 +208,7 @@ function App() {
             </Box>
             <Footer />
             <WhatsAppFab />
+            <MobileBottomBar />
             <InstallPrompt />
           </Box>
         </DataProvider>

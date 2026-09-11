@@ -22,18 +22,27 @@ const WhatsAppFab = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
+          className="whatsapp-ripple-btn"
           sx={{
+            display: { xs: 'none', md: 'flex' },
             position: 'fixed',
-            bottom: { xs: 16, md: 24 },
-            right: { xs: 16, md: 24 },
+            bottom: 28,
+            right: 28,
             backgroundColor: '#25D366',
             color: '#FFFFFF',
             zIndex: (theme) => theme.zIndex.snackbar + 1,
-            boxShadow: '0 6px 16px rgba(37,211,102,0.45)',
-            '&:hover': { backgroundColor: '#1ebe5d' },
+            width: { xs: 58, md: 64 },
+            height: { xs: 58, md: 64 },
+            boxShadow: '0 8px 24px rgba(37,211,102,0.45)',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            '&:hover': {
+              backgroundColor: '#1ebe5d',
+              transform: 'scale(1.1) rotate(5deg)',
+              boxShadow: '0 12px 30px rgba(37,211,102,0.6)',
+            },
           }}
         >
-          <WhatsAppIcon />
+          <WhatsAppIcon sx={{ fontSize: { xs: 32, md: 36 } }} />
         </Fab>
       </Tooltip>
     </Zoom>

@@ -12,7 +12,8 @@ import {
   isFirebaseConfigured,
 } from '../firebase';
 
-const STORAGE_KEY = 'divinepooja:data:v1';
+const STORAGE_KEY = 'pujaribaba:data:v1';
+const LEGACY_STORAGE_KEY = 'divinepooja:data:v1';
 
 const defaultState = {
   poojas: seedPoojas,
@@ -30,7 +31,13 @@ const normalize = (raw) => ({
 
 function loadLocal() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    let raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      raw = localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (raw) {
+        localStorage.setItem(STORAGE_KEY, raw);
+      }
+    }
     if (!raw) return defaultState;
     return normalize(JSON.parse(raw));
   } catch {

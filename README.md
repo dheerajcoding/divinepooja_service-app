@@ -1,4 +1,4 @@
-# 🕉️ Divine Pooja Services
+# 🕉️ Pujari Baba (pujaribaba.com)
 
 A trustworthy, mobile-friendly website where everyday families can browse poojas,
 view transparent pricing, and **book a pandit in one tap on WhatsApp**.
@@ -173,4 +173,4 @@ Add new images to `public/images/` and reference them with `/images/your-file.jp
 
 ## 📜 License
 
-Proprietary — © Divine Pooja Services.
+Proprietary — © Pujari Baba (pujaribaba.com).

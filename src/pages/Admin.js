@@ -29,6 +29,8 @@ import {
   Alert,
   Tooltip,
   Snackbar,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -44,8 +46,9 @@ import { adminLogin, adminLogout, onAdminAuthChange, isFirebaseConfigured } from
 import { siteConfig } from '../config';
 
 /* Local-only fallback password gate (used when Firebase isn't configured). */
-const LOCAL_SESSION_KEY = 'divinepooja:admin:local';
-const localIsAuthed = () => sessionStorage.getItem(LOCAL_SESSION_KEY) === '1';
+const LOCAL_SESSION_KEY = 'pujaribaba:admin:local';
+const LEGACY_LOCAL_SESSION_KEY = 'divinepooja:admin:local';
+const localIsAuthed = () => sessionStorage.getItem(LOCAL_SESSION_KEY) === '1' || sessionStorage.getItem(LEGACY_LOCAL_SESSION_KEY) === '1';
 const localLogin = (pw) => {
   if (pw && pw === siteConfig.admin.password) {
     sessionStorage.setItem(LOCAL_SESSION_KEY, '1');
@@ -176,7 +179,10 @@ const TabPanel = ({ value, index, children }) =>
 
 /* Reads a File and returns a JPEG data URL resized so the longest side
    is at most `maxSide` pixels — keeps Firestore docs small. */
-const fileToResizedDataUrl = (file, maxSide = 800, quality = 0.82) =>
+/* Reads a File and returns a JPEG data URL resized to standard card dimensions (~800x480).
+   In 'fit' mode, it scales the whole image so NOT A SINGLE PIXEL is cut, and draws a smooth,
+   blurred ambient backdrop of the same photo to fill any letterbox areas seamlessly. */
+const fileToResizedDataUrl = (file, fitMode = 'fit', targetW = 800, targetH = 480, quality = 0.85) =>
   new Promise((resolve, reject) => {
     if (!file.type.startsWith('image/')) {
       reject(new Error('Please choose an image file (JPG, PNG, WEBP, etc.).'));
@@ -188,25 +194,69 @@ const fileToResizedDataUrl = (file, maxSide = 800, quality = 0.82) =>
       const img = new Image();
       img.onerror = () => reject(new Error('Could not decode the image.'));
       img.onload = () => {
-        const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
-        const w = Math.round(img.width * scale);
-        const h = Math.round(img.height * scale);
         const canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
+        canvas.width = targetW;
+        canvas.height = targetH;
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, w, h);
-        resolve(canvas.toDataURL('image/jpeg', quality));
+
+        if (fitMode === 'fit') {
+          // 1. Draw blurred ambient backdrop so the card is completely filled without black bars
+          ctx.save();
+          const bgScale = Math.max(targetW / img.width, targetH / img.height);
+          const bgW = img.width * bgScale;
+          const bgH = img.height * bgScale;
+          const bgX = (targetW - bgW) / 2;
+          const bgY = (targetH - bgH) / 2;
+          ctx.filter = 'blur(16px) brightness(0.65)';
+          ctx.drawImage(img, bgX, bgY, bgW, bgH);
+          ctx.restore();
+
+          // 2. Draw subtle dark tint over the blur for sacred contrast
+          ctx.fillStyle = 'rgba(25, 12, 6, 0.35)';
+          ctx.fillRect(0, 0, targetW, targetH);
+
+          // 3. Draw full crisp image in the center (NEVER cropped)
+          const scale = Math.min(targetW / img.width, targetH / img.height);
+          const fgW = Math.round(img.width * scale);
+          const fgH = Math.round(img.height * scale);
+          const fgX = Math.round((targetW - fgW) / 2);
+          const fgY = Math.round((targetH - fgH) / 2);
+
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+          ctx.shadowBlur = 14;
+          ctx.drawImage(img, fgX, fgY, fgW, fgH);
+
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        } else if (fitMode === 'crop') {
+          // Fill & crop center
+          const scale = Math.max(targetW / img.width, targetH / img.height);
+          const w = Math.round(img.width * scale);
+          const h = Math.round(img.height * scale);
+          const x = Math.round((targetW - w) / 2);
+          const y = Math.round((targetH - h) / 2);
+          ctx.drawImage(img, x, y, w, h);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        } else {
+          // Original aspect ratio, scaled to maxSide
+          const scale = Math.min(1, targetW / Math.max(img.width, img.height));
+          const w = Math.round(img.width * scale);
+          const h = Math.round(img.height * scale);
+          canvas.width = w; canvas.height = h;
+          ctx.drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        }
       };
       img.src = reader.result;
     };
     reader.readAsDataURL(file);
   });
 
-/* Image URL input + "Upload from device" button + preview. */
+/* Image URL input + "Upload from device" button with smart fit mode & card preview. */
 const ImagePicker = ({ value, onChange, label = 'Image', helperText }) => {
   const inputRef = useRef(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+  const [fitMode, setFitMode] = useState('fit'); // 'fit', 'crop', 'original'
 
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
@@ -214,7 +264,7 @@ const ImagePicker = ({ value, onChange, label = 'Image', helperText }) => {
     if (!file) return;
     setErr(''); setBusy(true);
     try {
-      const dataUrl = await fileToResizedDataUrl(file);
+      const dataUrl = await fileToResizedDataUrl(file, fitMode);
       onChange(dataUrl);
     } catch (ex) {
       setErr(ex.message || 'Upload failed');
@@ -224,39 +274,110 @@ const ImagePicker = ({ value, onChange, label = 'Image', helperText }) => {
   };
 
   return (
-    <Box>
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="flex-start">
+    <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(255, 248, 235, 0.6)', border: '1px solid rgba(229, 169, 16, 0.3)' }}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="flex-start" sx={{ mb: 1.5 }}>
         <TextField
           fullWidth
           label={label}
           value={value || ''}
           onChange={(e) => onChange(e.target.value)}
-          helperText={err || helperText || 'Paste an https:// URL, or upload from your device →'}
+          helperText={err || helperText || 'Paste an image URL, or upload from your device →'}
           error={!!err}
         />
         <Button
           component="label"
-          variant="outlined"
+          variant="contained"
           startIcon={<UploadIcon />}
           disabled={busy}
-          sx={{ whiteSpace: 'nowrap', mt: { xs: 0, sm: 1 } }}
+          sx={{
+            whiteSpace: 'nowrap',
+            mt: { xs: 0, sm: 1 },
+            background: 'linear-gradient(135deg, #FF7700 0%, #E5A910 100%)',
+            color: 'white',
+            fontWeight: 700,
+            borderRadius: 50,
+            px: 2.5,
+          }}
         >
-          {busy ? 'Uploading…' : 'Upload'}
+          {busy ? 'Fitting…' : 'Upload Image'}
           <input ref={inputRef} type="file" accept="image/*" hidden onChange={handleFile} />
         </Button>
       </Stack>
+
+      {/* Fit Mode Selector */}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap', mb: 1 }}>
+        <Typography variant="caption" sx={{ fontWeight: 700, color: '#331C10' }}>
+          Upload Fit Mode:
+        </Typography>
+        <Chip
+          label="✨ Fit Whole Photo (No Crop)"
+          size="small"
+          onClick={() => setFitMode('fit')}
+          sx={{
+            cursor: 'pointer',
+            fontWeight: 600,
+            backgroundColor: fitMode === 'fit' ? '#FF7700' : 'white',
+            color: fitMode === 'fit' ? 'white' : '#664E3D',
+            border: '1px solid rgba(229, 169, 16, 0.4)',
+          }}
+        />
+        <Chip
+          label="✂️ Fill & Crop to 16:9"
+          size="small"
+          onClick={() => setFitMode('crop')}
+          sx={{
+            cursor: 'pointer',
+            fontWeight: 600,
+            backgroundColor: fitMode === 'crop' ? '#FF7700' : 'white',
+            color: fitMode === 'crop' ? 'white' : '#664E3D',
+            border: '1px solid rgba(229, 169, 16, 0.4)',
+          }}
+        />
+      </Box>
+
       {value && (
-        <Box sx={{ mt: 1 }}>
+        <Box sx={{ mt: 1.5 }}>
+          <Typography variant="caption" sx={{ color: '#664E3D', fontWeight: 600, display: 'block', mb: 0.5 }}>
+            Website Card Preview (Deity & ritual image will appear like this):
+          </Typography>
           <Box
-            component="img"
-            src={value}
-            alt="preview"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
             sx={{
-              maxWidth: 160, maxHeight: 100, objectFit: 'cover',
-              borderRadius: 1, border: '1px solid #eee',
+              width: 240,
+              height: 140,
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: 2.5,
+              backgroundColor: '#1E110A',
+              border: '1.5px solid rgba(229, 169, 16, 0.45)',
+              boxShadow: '0 4px 14px rgba(0,0,0,0.18)',
             }}
-          />
+          >
+            <Box
+              sx={{
+                position: 'absolute',
+                inset: -10,
+                backgroundImage: `url(${value})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                filter: 'blur(12px) brightness(0.65)',
+                transform: 'scale(1.15)',
+              }}
+            />
+            <Box
+              component="img"
+              src={value}
+              alt="preview"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              sx={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                zIndex: 1,
+                filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.35))',
+              }}
+            />
+          </Box>
         </Box>
       )}
     </Box>
@@ -293,8 +414,11 @@ const PoojaDialog = ({ open, initial, onClose, onSave }) => {
     });
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth fullScreen={isMobile}>
       <DialogTitle>{initial?.id ? 'Edit Pooja' : 'Add New Pooja'}</DialogTitle>
       <DialogContent dividers>
         <Grid container spacing={2}>
@@ -415,8 +539,11 @@ const PackageDialog = ({ open, initial, onClose, onSave }) => {
     });
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth fullScreen={isMobile}>
       <DialogTitle>{initial?.id ? 'Edit Package' : 'Add New Package'}</DialogTitle>
       <DialogContent dividers>
         <Grid container spacing={2}>
@@ -467,8 +594,11 @@ const TestimonialDialog = ({ open, initial, onClose, onSave }) => {
   }, [open, initial]);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth fullScreen={isMobile}>
       <DialogTitle>{initial?.id ? 'Edit Testimonial' : 'Add Testimonial'}</DialogTitle>
       <DialogContent dividers>
         <Grid container spacing={2}>
@@ -587,7 +717,7 @@ const AdminPanel = ({ onLogout }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `divine-pooja-data-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `pujaribaba-data-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
     notify('Data exported');
@@ -710,7 +840,8 @@ const AdminPanel = ({ onLogout }) => {
               <TableContainer>
                 <Table size="small">
                   <TableHead>
-                    <TableRow sx={{ backgroundColor: '#FFE4B5' }}>
+                    <TableRow sx={{ backgroundColor: 'rgba(255, 238, 204, 0.85)' }}>
+                      <TableCell sx={{ fontWeight: 'bold', width: 60 }}>Image</TableCell>
                       <TableCell sx={{ fontWeight: 'bold' }}>Name</TableCell>
                       <TableCell sx={{ fontWeight: 'bold' }}>Category</TableCell>
                       <TableCell sx={{ fontWeight: 'bold' }} align="right">Price</TableCell>
@@ -722,6 +853,30 @@ const AdminPanel = ({ onLogout }) => {
                   <TableBody>
                     {data.poojas.map((p) => (
                       <TableRow key={p.id} hover>
+                        <TableCell sx={{ width: 60, py: 1 }}>
+                          <Box
+                            sx={{
+                              width: 52,
+                              height: 34,
+                              position: 'relative',
+                              overflow: 'hidden',
+                              borderRadius: 1.5,
+                              backgroundColor: '#1E110A',
+                              border: '1px solid rgba(229, 169, 16, 0.4)',
+                            }}
+                          >
+                            <Box
+                              component="img"
+                              src={p.image}
+                              alt={p.name}
+                              sx={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                              }}
+                            />
+                          </Box>
+                        </TableCell>
                         <TableCell>
                           <Typography sx={{ fontWeight: 600 }}>{p.name}</Typography>
                           <Typography variant="caption" color="text.secondary">{p.priest || '—'}</Typography>

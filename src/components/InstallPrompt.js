@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Snackbar, Alert, Button, Box, Typography } from '@mui/material';
 import { Close as CloseIcon, GetApp as InstallIcon } from '@mui/icons-material';
+import { siteConfig } from '../config';
 
 const InstallPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -105,7 +106,7 @@ const InstallPrompt = () => {
       >
         <Box>
           <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
-            🕉️ Install Divine Pooja App
+            🕉️ Install {siteConfig.brand.name} App
           </Typography>
           <Typography variant="body2">
             Get instant access to pooja bookings and spiritual services!

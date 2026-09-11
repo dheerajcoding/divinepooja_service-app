@@ -100,45 +100,56 @@ const Contact = () => {
       href: `mailto:${siteConfig.contact.email}`,
     },
     {
-      icon: <LocationOnIcon sx={{ color: '#FF9933', fontSize: 30 }} />,
+      icon: <LocationOnIcon sx={{ color: '#FF7700', fontSize: 30 }} />,
       title: 'Address',
       details: [siteConfig.contact.addressLine1, siteConfig.contact.addressLine2],
-      subtitle: 'Visit our office',
+      subtitle: 'Click for directions on Google Maps',
+      href: 'https://maps.google.com/?q=Aya+Nagar+Shiv+Mandir+New+Delhi+India',
     },
   ];
 
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF8DC', py: 4 }}>
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFFDF8', py: 6 }}>
       <Container maxWidth="lg">
         <Typography
-          variant="h4"
+          variant="h3"
           component="h1"
           gutterBottom
           sx={{
             textAlign: 'center',
             mb: 2,
-            color: '#FF9933',
-            fontWeight: 'bold',
-            textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+            fontFamily: '"Cinzel", serif',
+            color: '#1E110A',
+            fontWeight: 800,
+            fontSize: { xs: '2.2rem', md: '3rem' },
           }}
         >
-          📞 Get In Touch
+          📞 Get In Touch With Pandit Ji
         </Typography>
-        <Typography variant="h6" sx={{ textAlign: 'center', mb: 6, color: '#5D4E37' }}>
-          Tell us what pooja you need — we’ll arrange an experienced pandit and all
-          samagri for you.
+        <Typography variant="h6" sx={{ textAlign: 'center', mb: 6, color: '#664E3D', maxWidth: 700, mx: 'auto', fontWeight: 500 }}>
+          Tell us what pooja or ritual you need — we’ll arrange an experienced pandit and all authentic samagri for your family.
         </Typography>
 
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" gutterBottom sx={{ color: '#FF9933', fontWeight: 'bold', mb: 3 }}>
-              📍 Reach Us Directly
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{
+                fontFamily: '"Cinzel", serif',
+                color: '#1E110A',
+                fontWeight: 700,
+                mb: 3,
+              }}
+            >
+              📍 Direct Contact Channels
             </Typography>
 
-            <Grid container spacing={3}>
+            <Grid container spacing={2.5}>
               {contactInfo.map((info) => (
                 <Grid item xs={12} sm={6} key={info.title}>
                   <Card
+                    className="glass-card"
                     component={info.href ? 'a' : 'div'}
                     href={info.href}
                     target={info.href && info.href.startsWith('http') ? '_blank' : undefined}
@@ -147,17 +158,27 @@ const Contact = () => {
                       height: '100%',
                       display: 'block',
                       textDecoration: 'none',
-                      background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF8DC 100%)',
-                      border: '2px solid #FFE4B5',
-                      borderRadius: 3,
-                      transition: 'transform 0.3s',
-                      '&:hover': { transform: 'translateY(-5px)' },
+                      borderRadius: 3.5,
+                      p: 1,
                     }}
                   >
-                    <CardContent sx={{ p: 3 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                        {info.icon}
-                        <Typography variant="h6" sx={{ ml: 2, color: '#FF9933', fontWeight: 'bold' }}>
+                    <CardContent sx={{ p: 2.5 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
+                        <Box
+                          sx={{
+                            width: 44,
+                            height: 44,
+                            borderRadius: '50%',
+                            backgroundColor: 'rgba(255, 119, 0, 0.1)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            mr: 1.5,
+                          }}
+                        >
+                          {info.icon}
+                        </Box>
+                        <Typography variant="h6" sx={{ color: '#1E110A', fontWeight: 700 }}>
                           {info.title}
                         </Typography>
                       </Box>
@@ -176,27 +197,49 @@ const Contact = () => {
             </Grid>
 
             <Paper
-              elevation={2}
+              elevation={0}
+              className="glass-card"
               sx={{
-                p: 3,
+                p: 3.5,
                 mt: 4,
-                background: 'linear-gradient(135deg, #FFE4B5 0%, #FFF8DC 100%)',
-                borderRadius: 3,
+                borderRadius: 4,
               }}
             >
-              <Typography variant="h6" gutterBottom sx={{ color: '#FF9933', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
-                <AccessTimeIcon sx={{ mr: 1 }} />
-                Service Hours
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{
+                  fontFamily: '"Cinzel", serif',
+                  color: '#C65102',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <AccessTimeIcon sx={{ mr: 1, color: '#FF7700' }} />
+                Service & Consultation Hours
               </Typography>
               <List dense>
-                <ListItem>
-                  <ListItemText primary="Monday - Sunday" secondary="6:00 AM - 9:00 PM" />
+                <ListItem sx={{ px: 0 }}>
+                  <ListItemText
+                    primary="Monday - Sunday"
+                    secondary="6:00 AM - 9:00 PM (Direct Call & WhatsApp)"
+                    primaryTypographyProps={{ style: { fontWeight: 600, color: '#1E110A' } }}
+                  />
                 </ListItem>
-                <ListItem>
-                  <ListItemText primary="Festival Season" secondary="Extended hours available" />
+                <ListItem sx={{ px: 0 }}>
+                  <ListItemText
+                    primary="Festival Season Muhurats"
+                    secondary="24/7 Priority pandit arrangements during Diwali, Navratri & Ganesh Chaturthi"
+                    primaryTypographyProps={{ style: { fontWeight: 600, color: '#1E110A' } }}
+                  />
                 </ListItem>
-                <ListItem>
-                  <ListItemText primary="Same-day bookings" secondary="Subject to pandit availability" />
+                <ListItem sx={{ px: 0 }}>
+                  <ListItemText
+                    primary="Same-Day Emergency Bookings"
+                    secondary="Subject to pandit ji availability in your locality"
+                    primaryTypographyProps={{ style: { fontWeight: 600, color: '#1E110A' } }}
+                  />
                 </ListItem>
               </List>
             </Paper>
@@ -204,18 +247,27 @@ const Contact = () => {
 
           <Grid item xs={12} md={6}>
             <Card
+              className="glass-card"
               sx={{
-                background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF8DC 100%)',
-                border: '2px solid #FFE4B5',
-                borderRadius: 3,
+                borderRadius: 4,
+                border: '1.5px solid rgba(229, 169, 16, 0.35)',
               }}
             >
-              <CardContent sx={{ p: 4 }}>
-                <Typography variant="h5" gutterBottom sx={{ color: '#FF9933', fontWeight: 'bold', textAlign: 'center' }}>
-                  Send Us a Message
+              <CardContent sx={{ p: { xs: 2.2, sm: 3.5, md: 4.5 } }}>
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{
+                    fontFamily: '"Cinzel", serif',
+                    color: '#1E110A',
+                    fontWeight: 700,
+                    textAlign: 'center',
+                  }}
+                >
+                  Send Pooja Inquiry
                 </Typography>
-                <Typography variant="body2" sx={{ textAlign: 'center', mb: 3, color: '#5D4E37' }}>
-                  Fill in your details and we’ll get back to you on WhatsApp or call.
+                <Typography variant="body2" sx={{ textAlign: 'center', mb: 3.5, color: '#664E3D' }}>
+                  Fill in your details — we will confirm muhurat and pandit availability instantly on WhatsApp.
                 </Typography>
 
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 }}>

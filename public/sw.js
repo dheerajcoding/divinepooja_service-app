@@ -1,5 +1,5 @@
-// Service Worker for Divine Pooja Services PWA
-const CACHE_NAME = 'divine-pooja-v1';
+// Service Worker for Pujari Baba PWA
+const CACHE_NAME = 'pujaribaba-v1';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',

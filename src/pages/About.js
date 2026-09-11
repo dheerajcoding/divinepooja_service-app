@@ -1,97 +1,112 @@
 import React from 'react';
-import { Container, Typography, Grid, Card, CardContent, Box, Paper, List, ListItem, ListItemText, ListItemIcon, CardMedia, Chip } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import {
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Box,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  CardMedia,
+  Chip,
+  Button,
+} from '@mui/material';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import GroupsIcon from '@mui/icons-material/Groups';
+import PhoneIcon from '@mui/icons-material/Phone';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { siteConfig } from '../config';
+import { useData } from '../context/DataContext';
 
 const About = () => {
+  const { stats } = useData();
+
   const values = [
     {
-      icon: <AccountBalanceIcon sx={{ color: '#2b6cb0', fontSize: 40 }} />,
+      icon: <AccountBalanceIcon sx={{ color: '#FF7700', fontSize: 40 }} />,
       title: 'Authentic Traditions',
-      description: 'We follow ancient Vedic traditions and procedures with utmost devotion and precision.'
+      description: 'We follow ancient Vedic traditions, Vedic chanting, and procedures with utmost devotion and precision.',
     },
     {
-      icon: <PeopleIcon sx={{ color: '#2b6cb0', fontSize: 40 }} />,
+      icon: <PeopleIcon sx={{ color: '#FF7700', fontSize: 40 }} />,
       title: 'Expert Priests',
-      description: 'Our priests have 12-20 years of experience and are well-versed in multiple languages.'
+      description: 'Our certified pandits have 8–20+ years of ritual experience and are well-versed in Hindi, Sanskrit, and regional customs.',
     },
     {
-      icon: <StarIcon sx={{ color: '#2b6cb0', fontSize: 40 }} />,
-      title: 'Quality Service',
-      description: 'We maintain the highest standards of service with genuine materials and proper rituals.'
+      icon: <StarIcon sx={{ color: '#FF7700', fontSize: 40 }} />,
+      title: 'Pristine Samagri',
+      description: 'We bring fresh flowers, pure ghee, havan wood, and premium sacred materials directly to your doorstep.',
     },
     {
-      icon: <CheckCircleIcon sx={{ color: '#2b6cb0', fontSize: 40 }} />,
-      title: 'Customer Satisfaction',
-      description: 'Over 892+ satisfied customers trust us for their spiritual needs.'
-    }
+      icon: <CheckCircleOutlineIcon sx={{ color: '#25D366', fontSize: 40 }} />,
+      title: 'Devotee Satisfaction',
+      description: 'Trusted by over 1,200+ families for housewarming, satyanarayan katha, wedding, and festive poojas.',
+    },
   ];
 
   const certifications = [
-    'Certified Vedic Priests',
-    'Traditional Samagri Sourcing',
-    'Quality Assurance Standards',
-    'Customer Service Excellence',
-    'Ethical Business Practices'
+    'Certified Traditional Vedic Priests',
+    'Pure & Authentic Samagri Sourcing',
+    'Timely Pandit Arrival Guarantee',
+    'Transparent & Fair Dakshina Pricing',
+    'Custom Gotra & Regional Custom Adherence',
   ];
 
   const teamMembers = [
     {
       name: 'Pandit Rajesh Sharma',
       role: 'Chief Priest & Founder',
-      experience: '8+ years',
-      specialization: 'Satyanarayan & Family Poojas',
+      experience: '12+ years',
+      specialization: 'Satyanarayan & Family Griha Poojas',
       image: '/images/image15.png',
-      languages: ['Sanskrit', 'Hindi', 'English']
+      languages: ['Sanskrit', 'Hindi', 'English'],
     },
     {
       name: 'Pandit Vijay Singh',
       role: 'Senior Priest',
-      experience: '10+ years',
-      specialization: 'Lakshmi & Wealth Poojas',
+      experience: '15+ years',
+      specialization: 'Maha Lakshmi & Navgrah Shanti',
       image: '/images/image17.avif',
-      languages: ['Hindi', 'Sanskrit', 'English']
+      languages: ['Hindi', 'Sanskrit'],
     },
     {
       name: 'Pandit Sanjay Mishra',
-      role: 'Specialist Priest',
-      experience: '7+ years',
-      specialization: 'Vishnu & Peace Poojas',
+      role: 'Vedic Ritual Specialist',
+      experience: '10+ years',
+      specialization: 'Rudra Abhishek & Maha Mrityunjaya',
       image: '/images/image16.jpg',
-      languages: ['Hindi', 'English', 'Bengali']
-    }
+      languages: ['Hindi', 'Bengali', 'Sanskrit'],
+    },
   ];
 
   const timeline = [
     {
-      year: '2024',
-      title: 'Foundation',
-      description: 'Divine Pooja Services was founded with a vision to bring authentic spiritual services to modern households.'
+      year: '2023',
+      title: 'Sacred Beginnings',
+      description: `${siteConfig.brand.name} was established with a heartfelt vision to make authentic Vedic poojas accessible to modern households.`,
     },
     {
       year: '2024',
+      title: 'Pristine Samagri & Pandit Network',
+      description: 'Expanded doorstep services with complete all-inclusive samagri kits and verified local pandits.',
+    },
+    {
+      year: '2025',
+      title: '1,000+ Happy Devotee Milestone',
+      description: 'Crossed over 1,200 poojas completed with a 4.9/5 star satisfaction rate across residential communities.',
+    },
+    {
+      year: '2026',
       title: 'Digital Platform Launch',
-      description: 'Launched our online booking system, making spiritual services accessible 24/7 to our community.'
+      description: 'Launched the new interactive platform for instant WhatsApp booking, muhurat guidance, and transparent packages.',
     },
-    {
-      year: '2025',
-      title: 'Community Growth',
-      description: 'Expanded to serve 892+ families with a dedicated team of 15+ expert priests.'
-    },
-    {
-      year: '2025',
-      title: 'Excellence Recognition',
-      description: 'Received recognition for outstanding service quality and customer satisfaction in our first year.'
-    },
-    {
-      year: '2025',
-      title: 'Future Vision',
-      description: 'Continuing to innovate while preserving ancient traditions for future generations.'
-    }
   ];
 
   const galleryImages = [
@@ -100,116 +115,164 @@ const About = () => {
     '/images/image3.jpg',
     '/images/image4.jpg',
     '/images/image5.jpg',
-    '/images/image6.jpg'
+    '/images/image6.jpg',
   ];
 
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: '#f7fafc', py: 4 }}>
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFFDF8', py: { xs: 4, sm: 6 } }}>
       <Container maxWidth="lg">
-        {/* Hero Section */}
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
+        {/* Page Hero Header */}
+        <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Typography
             variant="h3"
             component="h1"
             gutterBottom
             sx={{
-              color: '#1a365d',
-              fontWeight: 'bold',
-              textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+              fontFamily: '"Cinzel", serif',
+              color: '#1E110A',
+              fontWeight: 800,
+              fontSize: { xs: '2.1rem', sm: '2.8rem', md: '3.2rem' },
             }}
           >
-            🕉️ About Divine Pooja Services
+            🕉️ About {siteConfig.brand.name}
           </Typography>
-          <Typography variant="h6" sx={{ color: '#4a5568', maxWidth: 800, mx: 'auto' }}>
-            Bringing ancient spiritual traditions to your doorstep with devotion, authenticity, and excellence
+          <Typography variant="h6" sx={{ color: '#664E3D', maxWidth: 780, mx: 'auto', fontWeight: 500, fontSize: { xs: '1rem', md: '1.2rem' } }}>
+            Bridging ancient Vedic wisdom with modern ease — delivering devotion, authentic rituals, and experienced pandit ji directly to your home.
           </Typography>
         </Box>
 
         {/* Story Section */}
         <Paper
-          elevation={2}
+          className="glass-card"
           sx={{
-            p: 4,
-            mb: 6,
-            background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-            borderRadius: 3,
+            p: { xs: 2.5, sm: 4, md: 5 },
+            mb: { xs: 5, md: 7 },
+            borderRadius: { xs: 3, sm: 5 },
+            border: '1.5px solid rgba(229, 169, 16, 0.35)',
+            boxShadow: '0 12px 36px rgba(198, 81, 2, 0.1)',
           }}
         >
-          <Typography variant="h5" gutterBottom sx={{ color: '#1a365d', fontWeight: 'bold', textAlign: 'center' }}>
-            Our Sacred Journey
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              fontFamily: '"Cinzel", serif',
+              color: '#C65102',
+              fontWeight: 800,
+              textAlign: 'center',
+              fontSize: { xs: '1.45rem', sm: '1.9rem' },
+              mb: 2,
+            }}
+          >
+            Our Sacred Mission & Journey
           </Typography>
-          <Typography variant="body1" sx={{ color: '#4a5568', lineHeight: 1.8, textAlign: 'center', maxWidth: 900, mx: 'auto' }}>
-            Founded with a vision to make spiritual services accessible to everyone, Divine Pooja Services has been
-            serving the community for over 1 year. Our journey began with a simple belief that everyone deserves
-            to experience the divine blessings through proper Vedic rituals, regardless of their location or schedule.
+          <Typography variant="body1" sx={{ color: '#4A3728', lineHeight: 1.8, textAlign: 'center', maxWidth: 880, mx: 'auto', fontSize: { xs: '0.98rem', sm: '1.05rem' } }}>
+            Founded with a deep devotion to Vedic heritage, <strong>{siteConfig.brand.name}</strong> was born from a simple realization: in today's fast-paced world, organizing a traditional pooja with the right muhurat, a qualified pandit ji, and all authentic samagri should not be stressful.
             <br /><br />
-            Today, we proudly serve over 892+ families across the region, conducting more than 1,247+ poojas
-            with unwavering commitment to authenticity and excellence. Our team of 15+ experienced priests brings
-            centuries-old wisdom to modern homes, ensuring that every ritual is performed with the same devotion
-            and precision as in ancient temples.
+            Today, our family of expert pandits serves over <strong>{stats.happyCustomers}+</strong> households, completing more than <strong>{stats.totalPoojas}+</strong> rituals. Whether it is a peaceful Griha Pravesh, a joyful Satyanarayan Katha, or a sacred Havan, we ensure every mantra is chanted with reverence, purity, and spiritual devotion.
           </Typography>
         </Paper>
 
         {/* Values Section */}
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', color: '#1a365d', fontWeight: 'bold', mb: 4 }}>
-          Our Core Values
-        </Typography>
-        <Grid container spacing={4} sx={{ mb: 6 }}>
-          {values.map((value, index) => (
-            <Grid item key={index} xs={12} md={6} lg={3}>
-              <Card
-                sx={{
-                  height: '100%',
-                  textAlign: 'center',
-                  background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: 3,
-                  transition: 'transform 0.3s',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                  },
-                }}
-              >
-                <CardContent sx={{ p: 3 }}>
-                  <Box sx={{ mb: 2 }}>
-                    {value.icon}
-                  </Box>
-                  <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 2 }}>
-                    {value.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#4a5568' }}>
-                    {value.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        <Box sx={{ mb: { xs: 5, md: 7 } }}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              textAlign: 'center',
+              fontFamily: '"Cinzel", serif',
+              color: '#1E110A',
+              fontWeight: 800,
+              fontSize: { xs: '1.6rem', sm: '2.1rem' },
+              mb: 4,
+            }}
+          >
+            Our Core Pillars
+          </Typography>
+          <Grid container spacing={3}>
+            {values.map((value, index) => (
+              <Grid item key={index} xs={12} sm={6} lg={3}>
+                <Card
+                  className="glass-card"
+                  sx={{
+                    height: '100%',
+                    textAlign: 'center',
+                    borderRadius: 4,
+                    p: 1.5,
+                  }}
+                >
+                  <CardContent sx={{ p: 2.5 }}>
+                    <Box
+                      sx={{
+                        width: 64,
+                        height: 64,
+                        borderRadius: '50%',
+                        backgroundColor: 'rgba(255, 119, 0, 0.1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        mx: 'auto',
+                        mb: 2,
+                      }}
+                    >
+                      {value.icon}
+                    </Box>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontFamily: '"Cinzel", serif',
+                        color: '#1E110A',
+                        fontWeight: 700,
+                        fontSize: '1.15rem',
+                        mb: 1.5,
+                      }}
+                    >
+                      {value.title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D', lineHeight: 1.6 }}>
+                      {value.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
-        {/* Certifications Section */}
-        <Grid container spacing={4}>
+        {/* Standards & Live Impact Grid */}
+        <Grid container spacing={4} sx={{ mb: { xs: 5, md: 7 } }}>
           <Grid item xs={12} md={6}>
             <Paper
-              elevation={2}
+              className="glass-card"
               sx={{
-                p: 4,
+                p: { xs: 3, sm: 4 },
                 height: '100%',
-                background: 'linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)',
-                borderRadius: 3,
+                borderRadius: 4,
+                border: '1.5px solid rgba(229, 169, 16, 0.35)',
               }}
             >
-              <Typography variant="h5" gutterBottom sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                🏆 Our Certifications & Standards
+              <Typography
+                variant="h5"
+                gutterBottom
+                sx={{
+                  fontFamily: '"Cinzel", serif',
+                  color: '#C65102',
+                  fontWeight: 700,
+                  fontSize: { xs: '1.25rem', sm: '1.45rem' },
+                  mb: 2.5,
+                }}
+              >
+                🏆 Vedic Standards & Commitments
               </Typography>
-              <List>
+              <List sx={{ py: 0 }}>
                 {certifications.map((cert, index) => (
-                  <ListItem key={index}>
-                    <ListItemIcon>
-                      <CheckCircleIcon sx={{ color: '#38a169' }} />
+                  <ListItem key={index} sx={{ px: 0, py: 1 }}>
+                    <ListItemIcon sx={{ minWidth: 36 }}>
+                      <CheckCircleOutlineIcon sx={{ color: '#25D366' }} />
                     </ListItemIcon>
                     <ListItemText
                       primary={cert}
-                      sx={{ '& .MuiListItemText-primary': { color: '#4a5568', fontWeight: '500' } }}
+                      primaryTypographyProps={{ style: { color: '#331C10', fontWeight: 600, fontSize: '0.95rem' } }}
                     />
                   </ListItem>
                 ))}
@@ -219,260 +282,340 @@ const About = () => {
 
           <Grid item xs={12} md={6}>
             <Paper
-              elevation={2}
+              className="glass-card"
               sx={{
-                p: 4,
+                p: { xs: 3, sm: 4 },
                 height: '100%',
-                background: 'linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)',
-                borderRadius: 3,
+                borderRadius: 4,
+                border: '1.5px solid rgba(229, 169, 16, 0.35)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
               }}
             >
-              <Typography variant="h5" gutterBottom sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                📊 Our Impact
+              <Typography
+                variant="h5"
+                gutterBottom
+                sx={{
+                  fontFamily: '"Cinzel", serif',
+                  color: '#C65102',
+                  fontWeight: 700,
+                  fontSize: { xs: '1.25rem', sm: '1.45rem' },
+                  textAlign: 'center',
+                  mb: 3,
+                }}
+              >
+                📊 Devotee Trust & Impact
               </Typography>
-              <Box sx={{ textAlign: 'center', mb: 3 }}>
-                <Typography variant="h3" sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                  1,247+
-                </Typography>
-                <Typography variant="h6" sx={{ color: '#4a5568' }}>
-                  Poojas Completed
-                </Typography>
-              </Box>
-              <Box sx={{ textAlign: 'center', mb: 3 }}>
-                <Typography variant="h3" sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                  892+
-                </Typography>
-                <Typography variant="h6" sx={{ color: '#4a5568' }}>
-                  Happy Families
-                </Typography>
-              </Box>
-              <Box sx={{ textAlign: 'center', mb: 3 }}>
-                <Typography variant="h3" sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                  15+
-                </Typography>
-                <Typography variant="h6" sx={{ color: '#4a5568' }}>
-                  Expert Priests
-                </Typography>
-              </Box>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h3" sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                  1+
-                </Typography>
-                <Typography variant="h6" sx={{ color: '#4a5568' }}>
-                  Years of Service
-                </Typography>
-              </Box>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Box sx={{ textAlign: 'center', p: 1.5 }}>
+                    <Typography variant="h3" sx={{ fontFamily: '"Cinzel", serif', color: '#FF7700', fontWeight: 800, fontSize: { xs: '1.8rem', sm: '2.4rem' } }}>
+                      {stats.totalPoojas}+
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D', fontWeight: 600 }}>
+                      Poojas Performed
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ textAlign: 'center', p: 1.5 }}>
+                    <Typography variant="h3" sx={{ fontFamily: '"Cinzel", serif', color: '#FF7700', fontWeight: 800, fontSize: { xs: '1.8rem', sm: '2.4rem' } }}>
+                      {stats.happyCustomers}+
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D', fontWeight: 600 }}>
+                      Devotee Families
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ textAlign: 'center', p: 1.5 }}>
+                    <Typography variant="h3" sx={{ fontFamily: '"Cinzel", serif', color: '#FF7700', fontWeight: 800, fontSize: { xs: '1.8rem', sm: '2.4rem' } }}>
+                      {stats.experiencedPriests}+
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D', fontWeight: 600 }}>
+                      Expert Pandits
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ textAlign: 'center', p: 1.5 }}>
+                    <Typography variant="h3" sx={{ fontFamily: '"Cinzel", serif', color: '#FF7700', fontWeight: 800, fontSize: { xs: '1.8rem', sm: '2.4rem' } }}>
+                      {stats.yearsOfService}+
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D', fontWeight: 600 }}>
+                      Years Of Service
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
         </Grid>
 
-        {/* Team Section */}
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', color: '#1a365d', fontWeight: 'bold', mb: 4, mt: 6 }}>
-          👨‍🏫 Meet Our Expert Priests
-        </Typography>
-        <Grid container spacing={4} sx={{ mb: 6 }}>
-          {teamMembers.map((member, index) => (
-            <Grid item key={index} xs={12} md={4}>
-              <Card
-                sx={{
-                  height: '100%',
-                  background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: 3,
-                  transition: 'transform 0.3s',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                  },
-                }}
-              >
-                <Box sx={{ position: 'relative' }}>
-                  <CardMedia
-                    component="img"
-                    height="250"
-                    image={member.image}
-                    alt={member.name}
-                    sx={{ objectFit: 'cover' }}
-                  />
-                  <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                    <Chip
-                      label={`${member.experience} Exp.`}
-                      sx={{
-                        backgroundColor: '#1a365d',
-                        color: 'white',
-                        fontWeight: 'bold'
-                      }}
+        {/* Team Priests Section */}
+        <Box sx={{ mb: { xs: 5, md: 7 } }}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              textAlign: 'center',
+              fontFamily: '"Cinzel", serif',
+              color: '#1E110A',
+              fontWeight: 800,
+              fontSize: { xs: '1.6rem', sm: '2.1rem' },
+              mb: 4,
+            }}
+          >
+            👨‍🏫 Meet Our Experienced Pandits
+          </Typography>
+          <Grid container spacing={3.5}>
+            {teamMembers.map((member, index) => (
+              <Grid item key={index} xs={12} sm={6} md={4}>
+                <Card
+                  className="glass-card"
+                  sx={{
+                    height: '100%',
+                    borderRadius: 4,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Box className="card-zoom-media" sx={{ height: 260, position: 'relative' }}>
+                    <CardMedia
+                      component="img"
+                      height="260"
+                      image={member.image}
+                      alt={member.name}
+                      sx={{ objectFit: 'cover' }}
                     />
+                    <Box sx={{ position: 'absolute', top: 12, right: 12 }}>
+                      <Chip
+                        label={`${member.experience} Exp.`}
+                        sx={{
+                          backgroundColor: '#FF7700',
+                          color: 'white',
+                          fontWeight: 700,
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                        }}
+                      />
+                    </Box>
                   </Box>
-                </Box>
-                <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
-                    {member.name}
-                  </Typography>
-                  <Typography variant="subtitle1" sx={{ color: '#4a5568', fontWeight: '500', mb: 2 }}>
-                    {member.role}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#4a5568', mb: 2 }}>
-                    <strong>Specialization:</strong> {member.specialization}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#4a5568', mb: 2 }}>
-                    <strong>Languages:</strong> {member.languages.join(', ')}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                  <CardContent sx={{ p: 3 }}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontFamily: '"Cinzel", serif',
+                        color: '#1E110A',
+                        fontWeight: 700,
+                        fontSize: '1.2rem',
+                        mb: 0.5,
+                      }}
+                    >
+                      {member.name}
+                    </Typography>
+                    <Typography variant="subtitle2" sx={{ color: '#C65102', fontWeight: 600, mb: 1.5 }}>
+                      {member.role}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D', mb: 1 }}>
+                      <strong>Specialization:</strong> {member.specialization}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#664E3D' }}>
+                      <strong>Languages:</strong> {member.languages.join(', ')}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
-        {/* Timeline Section */}
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', color: '#1a365d', fontWeight: 'bold', mb: 4 }}>
-          📅 Our Journey Through Time
-        </Typography>
-        <Box sx={{ mb: 6 }}>
-          {timeline.map((event, index) => (
-            <Box key={index} sx={{ display: 'flex', mb: 4, alignItems: 'center' }}>
-              <Box sx={{ minWidth: 100, textAlign: 'center' }}>
-                <Typography variant="h5" sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-                  {event.year}
-                </Typography>
-              </Box>
-              <TimelineIcon sx={{ color: '#2b6cb0', mx: 2, fontSize: 30 }} />
-              <Card
+        {/* Responsive Timeline */}
+        <Box sx={{ mb: { xs: 5, md: 7 } }}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              textAlign: 'center',
+              fontFamily: '"Cinzel", serif',
+              color: '#1E110A',
+              fontWeight: 800,
+              fontSize: { xs: '1.6rem', sm: '2.1rem' },
+              mb: 4,
+            }}
+          >
+            📅 Our Growth Timeline
+          </Typography>
+          <Box sx={{ maxWidth: 750, mx: 'auto' }}>
+            {timeline.map((event, index) => (
+              <Box
+                key={index}
                 sx={{
-                  flex: 1,
-                  background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: 3,
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  alignItems: { xs: 'flex-start', sm: 'center' },
+                  gap: { xs: 1, sm: 2.5 },
+                  mb: 3,
                 }}
               >
-                <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
+                <Box
+                  sx={{
+                    minWidth: { xs: 'auto', sm: 80 },
+                    textAlign: { xs: 'left', sm: 'center' },
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                  }}
+                >
+                  <TimelineIcon sx={{ color: '#FF7700', fontSize: 26 }} />
+                  <Typography
+                    variant="h6"
+                    sx={{ fontFamily: '"Cinzel", serif', color: '#C65102', fontWeight: 800 }}
+                  >
+                    {event.year}
+                  </Typography>
+                </Box>
+                <Paper
+                  className="glass-card"
+                  sx={{
+                    flex: 1,
+                    width: '100%',
+                    p: 2.5,
+                    borderRadius: 3,
+                  }}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ fontFamily: '"Cinzel", serif', color: '#1E110A', fontWeight: 700, mb: 0.5 }}
+                  >
                     {event.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#4a5568' }}>
+                  <Typography variant="body2" sx={{ color: '#664E3D', lineHeight: 1.6 }}>
                     {event.description}
                   </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          ))}
+                </Paper>
+              </Box>
+            ))}
+          </Box>
         </Box>
 
         {/* Gallery Section */}
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', color: '#1a365d', fontWeight: 'bold', mb: 4 }}>
-          📸 Our Sacred Moments
-        </Typography>
-        <Grid container spacing={2} sx={{ mb: 6 }}>
-          {galleryImages.map((image, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-              <Card
-                sx={{
-                  borderRadius: 3,
-                  overflow: 'hidden',
-                  transition: 'transform 0.3s',
-                  '&:hover': {
-                    transform: 'scale(1.05)',
-                  },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={image}
-                  alt={`Gallery image ${index + 1}`}
-                  sx={{ objectFit: 'cover' }}
-                />
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-
-        {/* Mission Statement */}
-        <Paper
-          elevation={2}
-          sx={{
-            p: 4,
-            mt: 6,
-            background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-            borderRadius: 3,
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant="h5" gutterBottom sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-            Our Mission
+        <Box sx={{ mb: { xs: 5, md: 7 } }}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              textAlign: 'center',
+              fontFamily: '"Cinzel", serif',
+              color: '#1E110A',
+              fontWeight: 800,
+              fontSize: { xs: '1.6rem', sm: '2.1rem' },
+              mb: 4,
+            }}
+          >
+            📸 Glimpses of Divine Poojas
           </Typography>
-          <Typography variant="h6" sx={{ color: '#4a5568', maxWidth: 800, mx: 'auto', lineHeight: 1.6, mb: 3 }}>
-            "To preserve and propagate ancient Vedic traditions while making spiritual services accessible,
-            affordable, and authentic for modern households. We strive to bring peace, prosperity, and divine
-            blessings to every home through proper rituals and genuine devotion."
-          </Typography>
-          <Typography variant="body1" sx={{ color: '#4a5568', maxWidth: 900, mx: 'auto', lineHeight: 1.7 }}>
-            At Divine Pooja Services, we believe that spirituality should not be a luxury but a way of life.
-            Our commitment extends beyond performing rituals - we educate, guide, and support our community
-            in their spiritual journey. Every pooja we conduct is a sacred bridge between the ancient wisdom
-            of our ancestors and the modern aspirations of today's families.
-          </Typography>
-        </Paper>
-
-        {/* Service Guarantee */}
-        <Paper
-          elevation={2}
-          sx={{
-            p: 4,
-            mt: 4,
-            background: 'linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)',
-            borderRadius: 3,
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant="h5" gutterBottom sx={{ color: '#1a365d', fontWeight: 'bold' }}>
-            🛡️ Our Service Guarantee
-          </Typography>
-          <Grid container spacing={3} sx={{ mt: 2 }}>
-            <Grid item xs={12} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <CheckCircleIcon sx={{ color: '#38a169', fontSize: 40, mb: 1 }} />
-                <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
-                  Authentic Rituals
-                </Typography>
-                <Typography variant="body2">
-                  Every ritual follows traditional Vedic procedures with precision
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <PeopleIcon sx={{ color: '#38a169', fontSize: 40, mb: 1 }} />
-                <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
-                  Expert Priests
-                </Typography>
-                <Typography variant="body2">
-                  Qualified priests with extensive experience and knowledge
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <StarIcon sx={{ color: '#38a169', fontSize: 40, mb: 1 }} />
-                <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
-                  Quality Materials
-                </Typography>
-                <Typography variant="body2">
-                  Genuine samagri and materials sourced from traditional suppliers
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <GroupsIcon sx={{ color: '#38a169', fontSize: 40, mb: 1 }} />
-                <Typography variant="h6" sx={{ color: '#1a365d', fontWeight: 'bold', mb: 1 }}>
-                  Community Support
-                </Typography>
-                <Typography variant="body2">
-                  Ongoing spiritual guidance and community engagement
-                </Typography>
-              </Box>
-            </Grid>
+          <Grid container spacing={2}>
+            {galleryImages.map((image, index) => (
+              <Grid item key={index} xs={12} sm={6} md={4}>
+                <Card
+                  className="glass-card"
+                  sx={{
+                    borderRadius: 3.5,
+                    overflow: 'hidden',
+                    height: 220,
+                  }}
+                >
+                  <Box className="card-zoom-media" sx={{ height: '100%' }}>
+                    <CardMedia
+                      component="img"
+                      height="220"
+                      image={image}
+                      alt={`Pooja moment ${index + 1}`}
+                      sx={{ objectFit: 'cover' }}
+                    />
+                  </Box>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
+        </Box>
+
+        {/* Bottom Contact Callout */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: { xs: 2.5, sm: 4, md: 6 },
+            textAlign: 'center',
+            borderRadius: { xs: 3, sm: 5 },
+            background: 'linear-gradient(135deg, rgba(255, 248, 235, 0.95) 0%, rgba(255, 238, 204, 0.85) 100%)',
+            border: '2px solid rgba(229, 169, 16, 0.4)',
+            boxShadow: '0 12px 36px rgba(198, 81, 2, 0.1)',
+          }}
+        >
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              fontFamily: '"Cinzel", serif',
+              color: '#C65102',
+              fontWeight: 800,
+              fontSize: { xs: '1.35rem', sm: '1.8rem', md: '2.1rem' },
+            }}
+          >
+            🕉️ Consult With Our Pandit Ji
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#664E3D', maxWidth: 680, mx: 'auto', mb: 3.5, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
+            Have questions about pooja vidhi, auspicious dates, or custom ritual requirements? Reach out directly.
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Button
+              variant="contained"
+              component="a"
+              href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              startIcon={<WhatsAppIcon />}
+              sx={{
+                backgroundColor: '#25D366',
+                color: 'white',
+                fontWeight: 700,
+                px: 3.5,
+                py: 1.5,
+                borderRadius: 50,
+                width: { xs: '100%', sm: 'auto' },
+                maxWidth: { xs: 320, sm: 'none' },
+                boxShadow: '0 6px 20px rgba(37, 211, 102, 0.4)',
+                '&:hover': { backgroundColor: '#1ebe5d' },
+              }}
+            >
+              WhatsApp Us
+            </Button>
+            <Button
+              variant="outlined"
+              component="a"
+              href={`tel:${siteConfig.contact.phoneIntl}`}
+              startIcon={<PhoneIcon />}
+              sx={{
+                borderColor: '#FF7700',
+                color: '#FF7700',
+                fontWeight: 700,
+                px: 3.5,
+                py: 1.5,
+                borderRadius: 50,
+                borderWidth: 2,
+                backgroundColor: 'white',
+                width: { xs: '100%', sm: 'auto' },
+                maxWidth: { xs: 320, sm: 'none' },
+                '&:hover': {
+                  borderColor: '#C65102',
+                  backgroundColor: 'rgba(255, 119, 0, 0.08)',
+                  borderWidth: 2,
+                },
+              }}
+            >
+              Call {siteConfig.contact.phone}
+            </Button>
+          </Box>
         </Paper>
       </Container>
     </Box>
