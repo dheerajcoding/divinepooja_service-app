@@ -1,6 +1,6 @@
 /**
  * Pujari Baba - Production Static Server
- * Runs on Port 3003 with zero external dependencies (pure Node.js http).
+ * Runs on Port 3006 with zero external dependencies (pure Node.js http).
  * Handles React single-page routing (SPA fallback to index.html).
  */
 
@@ -8,7 +8,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3006;
 const BUILD_DIR = path.join(__dirname, 'build');
 
 const MIME_TYPES = {
