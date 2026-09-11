@@ -56,7 +56,10 @@ const localLogin = (pw) => {
   }
   return false;
 };
-const localLogout = () => sessionStorage.removeItem(LOCAL_SESSION_KEY);
+const localLogout = () => {
+  sessionStorage.removeItem(LOCAL_SESSION_KEY);
+  sessionStorage.removeItem(LEGACY_LOCAL_SESSION_KEY);
+};
 
 /* ───────────────── Login screen ───────────────── */
 
@@ -69,28 +72,45 @@ const AdminLogin = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    if (isFirebaseConfigured) {
+
+    // 1. Immediate master password bypass - works anytime!
+    if (localLogin(pw)) {
+      onLogin();
+      return;
+    }
+
+    // 2. If Firebase is configured and user supplied an email, try Firebase Authentication
+    if (isFirebaseConfigured && email.trim()) {
       setBusy(true);
       try {
         await adminLogin(email.trim().toLowerCase(), pw);
         onLogin();
       } catch (err) {
+        // Fallback: check if password matches master password even if Firebase returned error
+        if (localLogin(pw)) {
+          onLogin();
+          return;
+        }
+
         const code = err?.code || '';
         let msg = err?.message?.replace('Firebase: ', '') || 'Login failed';
         if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found') {
-          msg = 'Wrong email or password. Double-check both, or reset the password from the Firebase Console (Authentication → Users → ⋮ → Reset password).';
+          msg = 'Wrong email or password. You can sign in using the Master Admin Password (default: admin123) or verify this account in Firebase Console.';
         } else if (code === 'auth/too-many-requests') {
-          msg = 'Too many failed attempts. Wait a minute and try again, or reset the password.';
+          msg = 'Too many failed attempts. You can log in using the Master Admin Password (default: admin123).';
         } else if (code === 'auth/network-request-failed') {
-          msg = 'Network error — check your internet connection.';
+          msg = 'Network error — check your connection, or sign in using the Master Admin Password.';
         }
         setError(msg);
       } finally {
         setBusy(false);
       }
     } else {
-      if (localLogin(pw)) onLogin();
-      else setError('Incorrect password');
+      if (localLogin(pw)) {
+        onLogin();
+      } else {
+        setError('Incorrect password. Please enter your Firebase password or Master Password.');
+      }
     }
   };
 
@@ -103,7 +123,7 @@ const AdminLogin = ({ onLogin }) => {
           </Typography>
           <Typography variant="body2" align="center" sx={{ color: '#5D4E37', mb: 3 }}>
             {isFirebaseConfigured
-              ? 'Sign in with the admin email and password you created in Firebase Authentication.'
+              ? 'Sign in with your Firebase admin email or use the Master Admin Password.'
               : 'Enter the admin password to manage poojas, packages and testimonials.'}
           </Typography>
           <Box component="form" onSubmit={handleSubmit}>
@@ -111,12 +131,12 @@ const AdminLogin = ({ onLogin }) => {
               <TextField
                 fullWidth
                 type="email"
-                label="Email"
+                label="Admin Email (optional if using Master Password)"
                 value={email}
                 onChange={(e) => { setEmail(e.target.value); setError(''); }}
                 autoFocus
                 sx={{ mb: 2 }}
-                required
+                placeholder="e.g. dheerajk0206@gmail.com"
               />
             )}
             <TextField
@@ -134,6 +154,9 @@ const AdminLogin = ({ onLogin }) => {
             <Button type="submit" fullWidth variant="contained" size="large" disabled={busy}>
               {busy ? 'Signing in…' : 'Sign in'}
             </Button>
+            <Typography variant="caption" display="block" align="center" sx={{ mt: 2, color: '#8C7355' }}>
+              💡 Master Password fallback is enabled so you are never locked out.
+            </Typography>
           </Box>
         </Paper>
       </Container>
@@ -1100,16 +1123,29 @@ const AdminPanel = ({ onLogout }) => {
 /* ───────────────── Page wrapper with auth gate ───────────────── */
 
 const Admin = () => {
-  const [authed, setAuthed] = useState(isFirebaseConfigured ? false : localIsAuthed());
+  const [authed, setAuthed] = useState(() => localIsAuthed());
 
   useEffect(() => {
     if (!isFirebaseConfigured) return undefined;
-    return onAdminAuthChange((user) => setAuthed(!!user));
+    return onAdminAuthChange((user) => {
+      if (user) {
+        setAuthed(true);
+      } else if (!localIsAuthed()) {
+        setAuthed(false);
+      }
+    });
   }, []);
 
   const handleLogout = async () => {
-    if (isFirebaseConfigured) await adminLogout();
-    else { localLogout(); setAuthed(false); }
+    localLogout();
+    if (isFirebaseConfigured) {
+      try {
+        await adminLogout();
+      } catch (err) {
+        // ignore
+      }
+    }
+    setAuthed(false);
   };
 
   return authed
