@@ -1,10 +1,15 @@
 // Service Worker for Pujari Baba PWA
-const CACHE_NAME = 'pujaribaba-v1';
+const CACHE_NAME = 'pujaribaba-v2';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
-  '/manifest.json'
+  '/manifest.json',
+  '/favicon.png',
+  '/favicon.ico',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/icon-maskable-192.png',
+  '/icon-maskable-512.png',
+  '/apple-touch-icon.png'
 ];
 
 // Install Service Worker

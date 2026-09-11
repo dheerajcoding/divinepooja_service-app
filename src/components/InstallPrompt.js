@@ -104,13 +104,28 @@ const InstallPrompt = () => {
           </Box>
         }
       >
-        <Box>
-          <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
-            🕉️ Install {siteConfig.brand.name} App
-          </Typography>
-          <Typography variant="body2">
-            Get instant access to pooja bookings and spiritual services!
-          </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Box
+            component="img"
+            src="/icon-192.png"
+            alt={siteConfig.brand.name}
+            sx={{
+              width: 42,
+              height: 42,
+              borderRadius: 2,
+              boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+              border: '1px solid rgba(255,255,255,0.4)',
+              flexShrink: 0,
+            }}
+          />
+          <Box>
+            <Typography variant="subtitle2" sx={{ fontWeight: 'bold', lineHeight: 1.2 }}>
+              Install {siteConfig.brand.name} App
+            </Typography>
+            <Typography variant="caption" sx={{ display: 'block', opacity: 0.95, mt: 0.25 }}>
+              Get instant access to pooja bookings & spiritual services!
+            </Typography>
+          </Box>
         </Box>
       </Alert>
     </Snackbar>
