@@ -463,8 +463,8 @@ const Home = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={3.5} sx={{ mb: 8 }}>
-          {popularPoojas.map((pooja) => (
+        <Grid container spacing={3.5} sx={{ mb: 5 }}>
+          {popularPoojas.slice(0, 6).map((pooja) => (
             <Grid item key={pooja.id} xs={12} sm={6} md={4}>
               <Card
                 className="glass-card"
@@ -474,6 +474,12 @@ const Home = () => {
                   flexDirection: 'column',
                   borderRadius: 4,
                   position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'transform 0.35s ease, box-shadow 0.35s ease',
+                  '&:hover': {
+                    transform: 'translateY(-6px)',
+                    boxShadow: '0 16px 36px rgba(198, 81, 2, 0.16)',
+                  },
                 }}
               >
                 {pooja.isOffer && (
@@ -487,38 +493,29 @@ const Home = () => {
                   </Box>
                 )}
                 <Box
-                  className="card-zoom-media"
                   sx={{
-                    height: 215,
+                    width: '100%',
+                    height: { xs: 220, sm: 220, md: 230 },
+                    aspectRatio: '16 / 9',
                     position: 'relative',
                     overflow: 'hidden',
-                    backgroundColor: '#1E110A',
+                    backgroundColor: '#FAF5EE',
                   }}
                 >
-                  {/* Ambient blurred backdrop so vertical/square images never look awkward or cut */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      inset: -12,
-                      backgroundImage: `url(${pooja.image})`,
-                      backgroundPosition: 'center',
-                      backgroundSize: 'cover',
-                      filter: 'blur(16px) brightness(0.65)',
-                      transform: 'scale(1.15)',
-                      opacity: 0.9,
-                    }}
-                  />
                   <CardMedia
                     component="img"
                     image={pooja.image}
                     alt={pooja.name}
+                    loading="lazy"
                     sx={{
-                      position: 'relative',
                       height: '100%',
                       width: '100%',
-                      objectFit: 'contain',
-                      zIndex: 1,
-                      filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.35))',
+                      objectFit: 'cover',
+                      objectPosition: 'center 12%',
+                      transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
+                      '&:hover': {
+                        transform: 'scale(1.04)',
+                      },
                     }}
                   />
                 </Box>
@@ -625,6 +622,34 @@ const Home = () => {
             </Grid>
           ))}
         </Grid>
+
+        {/* View All Poojas Button */}
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Button
+            variant="contained"
+            size="large"
+            component={Link}
+            to="/poojas"
+            sx={{
+              background: 'linear-gradient(135deg, #FF7700 0%, #E5A910 100%)',
+              color: '#FFFFFF',
+              fontWeight: 700,
+              fontSize: { xs: '0.95rem', md: '1.05rem' },
+              px: { xs: 3.5, md: 5 },
+              py: 1.5,
+              borderRadius: 50,
+              boxShadow: '0 6px 22px rgba(255, 119, 0, 0.45)',
+              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              '&:hover': {
+                background: 'linear-gradient(135deg, #E66A00 0%, #C6920D 100%)',
+                transform: 'translateY(-3px) scale(1.02)',
+                boxShadow: '0 10px 28px rgba(255, 119, 0, 0.65)',
+              },
+            }}
+          >
+            🕉️ View All Poojas ({dummyPoojas.length} Rituals)
+          </Button>
+        </Box>
 
         {/* Dynamic Urgent Highlight Banner */}
         <Paper

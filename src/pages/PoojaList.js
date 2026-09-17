@@ -148,6 +148,12 @@ const PoojaList = () => {
                     flexDirection: 'column',
                     borderRadius: 4,
                     position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'transform 0.35s ease, box-shadow 0.35s ease',
+                    '&:hover': {
+                      transform: 'translateY(-6px)',
+                      boxShadow: '0 16px 36px rgba(198, 81, 2, 0.16)',
+                    },
                   }}
                 >
                   {pooja.isOffer && (
@@ -162,38 +168,29 @@ const PoojaList = () => {
                   )}
 
                   <Box
-                    className="card-zoom-media"
                     sx={{
-                      height: 215,
+                      width: '100%',
+                      height: { xs: 220, sm: 220, md: 230 },
+                      aspectRatio: '16 / 9',
                       position: 'relative',
                       overflow: 'hidden',
-                      backgroundColor: '#1E110A',
+                      backgroundColor: '#FAF5EE',
                     }}
                   >
-                    {/* Ambient blurred backdrop so vertical/square images never look awkward or cut */}
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        inset: -12,
-                        backgroundImage: `url(${pooja.image})`,
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                        filter: 'blur(16px) brightness(0.65)',
-                        transform: 'scale(1.15)',
-                        opacity: 0.9,
-                      }}
-                    />
                     <CardMedia
                       component="img"
                       image={pooja.image}
                       alt={pooja.name}
+                      loading="lazy"
                       sx={{
-                        position: 'relative',
                         height: '100%',
                         width: '100%',
-                        objectFit: 'contain',
-                        zIndex: 1,
-                        filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.35))',
+                        objectFit: 'cover',
+                        objectPosition: 'center 12%',
+                        transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
+                        '&:hover': {
+                          transform: 'scale(1.04)',
+                        },
                       }}
                     />
                   </Box>

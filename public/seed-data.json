@@ -1,0 +1,801 @@
+{
+  "stats": {
+    "totalPoojas": 1000,
+    "experiencedPriests": 15,
+    "happyCustomers": 892,
+    "yearsOfService": 1
+  },
+  "packages": [
+    {
+      "id": 1,
+      "discountedPrice": 3500,
+      "savings": 500,
+      "description": "Complete pooja package for family prosperity and well-being",
+      "poojas": [
+        "Satyanarayan Pooja",
+        "Ganesh Pooja"
+      ],
+      "features": [
+        "2 Experienced Priests",
+        "Complete Samagri",
+        "Prasad Distribution",
+        "Family Counseling"
+      ],
+      "originalPrice": 4000,
+      "name": "Family Blessing Package"
+    },
+    {
+      "description": "Combined pooja for wealth attraction and success",
+      "id": 2,
+      "discountedPrice": 3000,
+      "features": [
+        "Premium Priest",
+        "Gold-plated Items",
+        "Wealth Yantra",
+        "Success Mantras"
+      ],
+      "poojas": [
+        "Lakshmi Pooja",
+        "Ganesh Pooja"
+      ],
+      "savings": 500,
+      "name": "Wealth & Success Bundle",
+      "originalPrice": 3500
+    },
+    {
+      "savings": 1300,
+      "features": [
+        "Senior Priest",
+        "Complete Samagri Kit",
+        "Spiritual Consultation",
+        "Follow-up Prayers"
+      ],
+      "id": 3,
+      "poojas": [
+        "Satyanarayan Pooja",
+        "Vishnu Pooja",
+        "Durga Pooja"
+      ],
+      "originalPrice": 8800,
+      "name": "Complete Spiritual Package",
+      "discountedPrice": 7500,
+      "description": "Comprehensive spiritual cleansing and blessing ceremony"
+    }
+  ],
+  "poojas": [
+    {
+      "experience": "8",
+      "languages": [
+        "sanskrit",
+        "hindi"
+      ],
+      "isOffer": true,
+      "isPopular": true,
+      "originalPrice": 51000,
+      "image": "https://assets.ganeshaspeaks.com/wp-content/uploads/2026/09/Paryushan-Parv-Dates-Meaning-and-Jain-Rituals.webp",
+      "price": 71000,
+      "duration": 2,
+      "name": "Daslakshan Pooja",
+      "id": 8,
+      "category": "Peace",
+      "priest": "Paras Jain",
+      "reviews": 0,
+      "benefits": [],
+      "samagri": [
+        "Asht Prakari Puja – 8 Dravyas  Jal – Water 💧 Chandan – Sandalwood 🌿 Pushpa – Flowers 🌸 Dhoop – Incense Deepak – Lamp 🪔 Akshat – Rice Naivedya – Food offering Phal – Fruit"
+      ],
+      "rating": 5,
+      "description": "10 days pooja for daslakshan parv"
+    },
+    {
+      "priest": "Pandit Rajesh Sharma",
+      "experience": "12 years",
+      "originalPrice": 4000,
+      "category": "Protection & Shakti",
+      "rating": 4.9,
+      "isOffer": true,
+      "id": 9,
+      "description": "Invoke the divine blessings of Maa Durga during Shardiya Navratri with a traditional Durga Puja performed by an experienced priest. The ceremony includes Ganesh Puja, Kalash Sthapana, Durga Mantra Jaap, Aarti and traditional offerings, performed according to traditional rituals.",
+      "benefits": [
+        "Protection",
+        "Strength",
+        "Peace",
+        "Prosperity",
+        "Removal of Negativity"
+      ],
+      "samagri": [
+        "Maa Durga Idol/Image",
+        "Kalash",
+        "Coconut",
+        "Mango Leaves",
+        "Flowers",
+        "Fruits",
+        "Kumkum",
+        "Roli",
+        "Akshat",
+        "Incense",
+        "Ghee",
+        "Diya",
+        "Prasad"
+      ],
+      "name": "Navratri Durga Puja",
+      "image": "/images/image13.jpg",
+      "price": 3100,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "duration": 2.5,
+      "isPopular": true,
+      "reviews": 856
+    },
+    {
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "reviews": 742,
+      "priest": "Pandit Amit Kumar",
+      "isPopular": true,
+      "samagri": [
+        "Red Chunri",
+        "Flowers",
+        "Coconut",
+        "Fruits",
+        "Kalash",
+        "Kumkum",
+        "Roli",
+        "Akshat",
+        "Diya",
+        "Ghee",
+        "Incense",
+        "Prasad"
+      ],
+      "duration": 3,
+      "name": "Maa Durga Ashtami Puja",
+      "rating": 4.9,
+      "experience": "10 years",
+      "isOffer": true,
+      "category": "Shakti & Protection",
+      "originalPrice": 4500,
+      "price": 3500,
+      "benefits": [
+        "Protection",
+        "Strength",
+        "Family Well-being",
+        "Peace",
+        "Positive Energy"
+      ],
+      "description": "Perform a sacred Maa Durga Ashtami Puja to seek the blessings of Goddess Durga for strength, protection and family well-being. The ceremony includes Durga mantra recitation, traditional offerings, devotional rituals and Maa Durga Aarti.",
+      "id": 10,
+      "image": "/images/durga_ashtami.jpg"
+    },
+    {
+      "id": 11,
+      "samagri": [
+        "Lord Rama Image",
+        "Flowers",
+        "Fruits",
+        "Coconut",
+        "Kalash",
+        "Roli",
+        "Kumkum",
+        "Akshat",
+        "Incense",
+        "Ghee",
+        "Diya",
+        "Prasad"
+      ],
+      "priest": "Pandit Vijay Singh",
+      "benefits": [
+        "Victory",
+        "Protection",
+        "Success",
+        "Courage",
+        "Removal of Obstacles"
+      ],
+      "image": "/images/dussehra_ram_puja.jpg",
+      "reviews": 623,
+      "rating": 4.9,
+      "price": 3100,
+      "category": "Prosperity & Protection",
+      "experience": "11 years",
+      "name": "Dussehra Ram Puja",
+      "duration": 2.5,
+      "isPopular": true,
+      "isOffer": true,
+      "description": "Celebrate Vijayadashami with a traditional Dussehra Puja dedicated to Lord Rama. The ceremony seeks blessings for victory over obstacles, righteousness, peace and prosperity and includes Lord Rama Puja, mantra recitation and Aarti.",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "originalPrice": 4000
+    },
+    {
+      "rating": 4.9,
+      "image": "/images/karwa_chauth.jpg",
+      "reviews": 918,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "duration": 2,
+      "experience": "12 years",
+      "price": 2500,
+      "name": "Karwa Chauth Puja",
+      "priest": "Pandit Rajesh Sharma",
+      "originalPrice": 3200,
+      "description": "A traditional Karwa Chauth Puja performed for marital harmony, the well-being of the husband and the happiness and longevity of married life. The ceremony includes Ganesh Puja, Shiva-Parvati Puja, Karwa Puja, Chandra Dev Puja and traditional Aarti.",
+      "samagri": [
+        "Karwa",
+        "Roli",
+        "Kumkum",
+        "Akshat",
+        "Mehendi",
+        "Flowers",
+        "Fruits",
+        "Sweets",
+        "Diya",
+        "Incense",
+        "Chunri",
+        "Sindoor",
+        "Prasad"
+      ],
+      "isPopular": true,
+      "benefits": [
+        "Marital Harmony",
+        "Long Married Life",
+        "Family Happiness",
+        "Love",
+        "Well-being"
+      ],
+      "isOffer": true,
+      "category": "Marriage & Family",
+      "id": 12
+    },
+    {
+      "image": "/images/dhanteras_lakshmi_kuber.jpg",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "benefits": [
+        "Wealth",
+        "Prosperity",
+        "Financial Growth",
+        "Business Success",
+        "Abundance"
+      ],
+      "samagri": [
+        "Lakshmi-Ganesha Idol",
+        "Kuber Yantra",
+        "Kalash",
+        "Coconut",
+        "Flowers",
+        "Fruits",
+        "Coins",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Diya",
+        "Ghee",
+        "Incense",
+        "Prasad"
+      ],
+      "price": 4100,
+      "name": "Dhanteras Lakshmi Kuber Puja",
+      "id": 13,
+      "experience": "14 years",
+      "reviews": 687,
+      "category": "Wealth & Prosperity",
+      "isPopular": true,
+      "rating": 4.9,
+      "duration": 2.5,
+      "priest": "Pandit Amit Kumar",
+      "originalPrice": 5500,
+      "isOffer": true,
+      "description": "Invite abundance, prosperity and financial well-being into your home with a traditional Dhanteras Lakshmi Kuber Puja. The ceremony worships Goddess Lakshmi and Lord Kuber with traditional mantras, offerings and Aarti."
+    },
+    {
+      "description": "Celebrate Diwali with a traditional Lakshmi Ganesh Puja performed to invite prosperity, happiness and positive energy into your home or workplace. The ceremony includes Ganesh Puja, Lakshmi Puja, Saraswati Puja, mantra recitation and Diwali Aarti.",
+      "samagri": [
+        "Lakshmi-Ganesh Idols",
+        "Saraswati Idol",
+        "Kalash",
+        "Coconut",
+        "Flowers",
+        "Fruits",
+        "Sweets",
+        "Coins",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Diya",
+        "Ghee",
+        "Incense",
+        "Prasad"
+      ],
+      "id": 14,
+      "originalPrice": 6500,
+      "isPopular": true,
+      "category": "Wealth & Prosperity",
+      "price": 5100,
+      "reviews": 1247,
+      "image": "/images/diwali_lakshmi_ganesh.jpg",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "benefits": [
+        "Wealth",
+        "Prosperity",
+        "Success",
+        "Happiness",
+        "Business Growth",
+        "Peace"
+      ],
+      "priest": "Pandit Rajesh Sharma",
+      "duration": 2.5,
+      "isOffer": true,
+      "name": "Diwali Lakshmi Ganesh Puja",
+      "rating": 5,
+      "experience": "15 years"
+    },
+    {
+      "originalPrice": 9500,
+      "benefits": [
+        "Business Growth",
+        "Wealth",
+        "Success",
+        "New Opportunities",
+        "Prosperity"
+      ],
+      "reviews": 436,
+      "priest": "Pandit Ramesh Gupta",
+      "description": "A special Diwali Puja for shops, offices, businesses and commercial establishments. Seek blessings of Goddess Lakshmi, Lord Ganesha and Goddess Saraswati for prosperity, successful ventures and positive growth in the coming year.",
+      "samagri": [
+        "Lakshmi-Ganesh Idols",
+        "Saraswati Idol",
+        "Kalash",
+        "Coconut",
+        "Flowers",
+        "Fruits",
+        "Sweets",
+        "Coins",
+        "Accounting Books",
+        "Kumkum",
+        "Roli",
+        "Rice",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "category": "Business & Prosperity",
+      "rating": 4.9,
+      "isOffer": true,
+      "isPopular": true,
+      "duration": 3,
+      "name": "Diwali Business & Office Puja",
+      "id": 15,
+      "image": "/images/dhanteras_lakshmi_kuber.jpg",
+      "experience": "16 years",
+      "price": 7500,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ]
+    },
+    {
+      "benefits": [
+        "Protection",
+        "Prosperity",
+        "Family Happiness",
+        "Abundance",
+        "Peace"
+      ],
+      "originalPrice": 4000,
+      "category": "Protection & Prosperity",
+      "isOffer": true,
+      "name": "Govardhan Puja",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "id": 16,
+      "duration": 2,
+      "rating": 4.9,
+      "price": 3100,
+      "samagri": [
+        "Lord Krishna Idol",
+        "Annakut Bhog",
+        "Flowers",
+        "Fruits",
+        "Milk",
+        "Curd",
+        "Ghee",
+        "Honey",
+        "Tulsi",
+        "Coconut",
+        "Kalash",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "image": "/images/govardhan_puja.jpg",
+      "description": "Perform a traditional Govardhan Puja dedicated to Lord Krishna to seek divine protection, prosperity and family well-being. The ceremony includes Krishna Puja, Govardhan Puja, Annakut offerings, mantra recitation and Aarti.",
+      "experience": "11 years",
+      "reviews": 512,
+      "isPopular": true,
+      "priest": "Pandit Vijay Singh"
+    },
+    {
+      "description": "Celebrate the sacred bond between brothers and sisters with a traditional Bhai Dooj Puja. The ceremony seeks blessings for the brother's health, longevity, happiness and prosperity while celebrating the timeless bond of sibling love.",
+      "benefits": [
+        "Sibling Bond",
+        "Protection",
+        "Health",
+        "Longevity",
+        "Family Happiness"
+      ],
+      "reviews": 381,
+      "priest": "Pandit Sanjay Mishra",
+      "samagri": [
+        "Roli",
+        "Kumkum",
+        "Akshat",
+        "Diya",
+        "Flowers",
+        "Fruits",
+        "Sweets",
+        "Coconut",
+        "Kalash",
+        "Incense",
+        "Prasad"
+      ],
+      "category": "Family & Well-being",
+      "rating": 4.9,
+      "experience": "9 years",
+      "isOffer": true,
+      "isPopular": true,
+      "duration": 1.5,
+      "name": "Bhai Dooj Puja",
+      "id": 17,
+      "image": "/images/bhai_dooj.jpg",
+      "originalPrice": 2800,
+      "price": 2100,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Chhath Puja",
+      "isOffer": true,
+      "isPopular": true,
+      "experience": "14 years",
+      "duration": 2.5,
+      "languages": [
+        "Hindi",
+        "Sanskrit",
+        "Bhojpuri"
+      ],
+      "category": "Health & Family",
+      "rating": 4.9,
+      "image": "/images/chhath_puja.jpg",
+      "reviews": 562,
+      "price": 3100,
+      "originalPrice": 4000,
+      "priest": "Pandit Ramesh Gupta",
+      "benefits": [
+        "Health",
+        "Family Well-being",
+        "Prosperity",
+        "Happiness",
+        "Positive Energy"
+      ],
+      "samagri": [
+        "Thekua",
+        "Fruits",
+        "Sugarcane",
+        "Coconut",
+        "Diya",
+        "Flowers",
+        "Bamboo Basket",
+        "Kalash",
+        "Roli",
+        "Akshat",
+        "Prasad"
+      ],
+      "description": "A traditional Chhath Puja dedicated to Surya Dev and Chhathi Maiya, performed with devotion for health, prosperity, family well-being and gratitude. The ceremony includes traditional offerings, Surya Arghya and devotional prayers."
+    },
+    {
+      "duration": 3,
+      "isPopular": true,
+      "originalPrice": 6500,
+      "experience": "18 years",
+      "samagri": [
+        "Shivling",
+        "Gangajal",
+        "Milk",
+        "Curd",
+        "Honey",
+        "Ghee",
+        "Bel Patra",
+        "Flowers",
+        "Fruits",
+        "Dhatura",
+        "Coconut",
+        "Kalash",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "name": "Mahamrityunjaya Jaap & Shiv Puja",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "reviews": 624,
+      "description": "A sacred Mahamrityunjaya Jaap and Shiva Puja performed with traditional Vedic mantras and offerings. The ceremony is undertaken by devotees seeking spiritual strength, peace, well-being and protection.",
+      "rating": 4.9,
+      "id": 19,
+      "image": "/images/mahamrityunjaya_shiv.jpg",
+      "benefits": [
+        "Health",
+        "Peace",
+        "Protection",
+        "Spiritual Strength",
+        "Positive Energy"
+      ],
+      "price": 5100,
+      "priest": "Pandit Rajesh Sharma",
+      "category": "Health & Protection",
+      "isOffer": false
+    },
+    {
+      "originalPrice": 4500,
+      "category": "Prosperity & Family",
+      "samagri": [
+        "Lord Vishnu Image",
+        "Kalash",
+        "Coconut",
+        "Banana",
+        "Fruits",
+        "Panchamrit",
+        "Tulsi",
+        "Flowers",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "rating": 4.9,
+      "price": 3500,
+      "reviews": 1247,
+      "id": 20,
+      "benefits": [
+        "Prosperity",
+        "Peace",
+        "Family Happiness",
+        "Success",
+        "Spiritual Well-being"
+      ],
+      "description": "A traditional Shri Satyanarayan Katha and Puja performed to seek the blessings of Lord Vishnu for peace, prosperity and family well-being. The ceremony includes Ganesh Puja, Kalash Puja, Satyanarayan Katha, Aarti and Prasad.",
+      "priest": "Pandit Rajesh Sharma",
+      "experience": "15 years",
+      "image": "/images/image15.png",
+      "isPopular": true,
+      "duration": 3,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "name": "Satyanarayan Katha & Puja",
+      "isOffer": false
+    },
+    {
+      "isPopular": true,
+      "description": "Begin a new chapter in your home with a traditional Griha Pravesh Puja. The ceremony is performed to seek blessings for peace, prosperity, protection and positive energy in the new home and includes Ganesh Puja, Vastu Puja, Kalash Sthapana, Navgraha Puja and Havan.",
+      "experience": "18 years",
+      "name": "Griha Pravesh Puja",
+      "category": "Home & Prosperity",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "isOffer": false,
+      "benefits": [
+        "Home Protection",
+        "Peace",
+        "Prosperity",
+        "Positive Energy",
+        "Family Happiness"
+      ],
+      "id": 21,
+      "samagri": [
+        "Kalash",
+        "Coconut",
+        "Mango Leaves",
+        "Navadhanya",
+        "Havan Samagri",
+        "Ghee",
+        "Flowers",
+        "Fruits",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Vastu Yantra",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "priest": "Pandit Ramesh Gupta",
+      "originalPrice": 9000,
+      "image": "/images/image16.jpg",
+      "duration": 4,
+      "rating": 4.9,
+      "reviews": 734,
+      "price": 7100
+    },
+    {
+      "experience": "16 years",
+      "category": "Vastu & Protection",
+      "description": "A traditional Vastu Shanti Puja performed to establish harmony and positive energy within a home or property. The ceremony includes Ganesh Puja, Vastu Devta Puja, Navgraha Puja, Havan and traditional Vedic mantras.",
+      "price": 6100,
+      "priest": "Pandit Amit Kumar",
+      "image": "/images/govardhan_puja.jpg",
+      "reviews": 486,
+      "id": 22,
+      "samagri": [
+        "Vastu Yantra",
+        "Kalash",
+        "Coconut",
+        "Mango Leaves",
+        "Navadhanya",
+        "Havan Samagri",
+        "Ghee",
+        "Flowers",
+        "Fruits",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "rating": 4.9,
+      "benefits": [
+        "Peace",
+        "Harmony",
+        "Protection",
+        "Positive Energy",
+        "Prosperity"
+      ],
+      "isOffer": false,
+      "originalPrice": 8000,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "isPopular": false,
+      "name": "Vastu Shanti Puja",
+      "duration": 3.5
+    },
+    {
+      "reviews": 395,
+      "category": "Business & Prosperity",
+      "experience": "13 years",
+      "rating": 4.9,
+      "benefits": [
+        "Business Growth",
+        "Wealth",
+        "Success",
+        "New Opportunities",
+        "Removal of Obstacles"
+      ],
+      "description": "A traditional Ganesh Lakshmi Puja for entrepreneurs, shop owners and businesses seeking blessings for prosperity, success and removal of obstacles. The ceremony combines Lord Ganesha and Goddess Lakshmi Puja with traditional mantras, offerings and Aarti.",
+      "name": "Ganesh Lakshmi Business Puja",
+      "samagri": [
+        "Lakshmi-Ganesh Idols",
+        "Kalash",
+        "Coconut",
+        "Flowers",
+        "Fruits",
+        "Sweets",
+        "Coins",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "priest": "Pandit Sanjay Mishra",
+      "isPopular": true,
+      "originalPrice": 5500,
+      "id": 23,
+      "isOffer": false,
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "price": 4100,
+      "image": "/images/dhanteras_lakshmi_kuber.jpg",
+      "duration": 2.5
+    },
+    {
+      "isOffer": false,
+      "priest": "Pandit Vijay Singh",
+      "price": 7100,
+      "image": "/images/mahamrityunjaya_shiv.jpg",
+      "languages": [
+        "Hindi",
+        "Sanskrit"
+      ],
+      "duration": 4,
+      "description": "A traditional Navgraha Shanti Puja performed to seek harmony and balance through prayers to the nine planetary deities. The ceremony includes Navgraha Puja, mantra recitation, offerings and Havan according to traditional practices.",
+      "rating": 4.9,
+      "name": "Navgraha Shanti Puja",
+      "isPopular": false,
+      "experience": "20 years",
+      "id": 24,
+      "benefits": [
+        "Peace",
+        "Stability",
+        "Success",
+        "Well-being",
+        "Positive Energy"
+      ],
+      "reviews": 318,
+      "originalPrice": 9000,
+      "samagri": [
+        "Navgraha Items",
+        "Kalash",
+        "Nine Grains",
+        "Flowers",
+        "Fruits",
+        "Havan Samagri",
+        "Ghee",
+        "Rice",
+        "Kumkum",
+        "Roli",
+        "Diya",
+        "Incense",
+        "Prasad"
+      ],
+      "category": "Astrology & Well-being"
+    }
+  ],
+  "testimonials": [
+    {
+      "date": "2025-11-15",
+      "text": "Amazing service! The priest was very knowledgeable and the pooja was performed with utmost devotion. Highly recommended!",
+      "rating": 5,
+      "name": "Mrs. Priya Sharma",
+      "location": "Delhi",
+      "id": 1,
+      "pooja": "Satyanarayan Pooja"
+    },
+    {
+      "name": "Mr. Rajesh Kumar",
+      "date": "2025-11-10",
+      "rating": 5,
+      "text": "Best pooja service I have ever experienced. Professional, punctual, and spiritually uplifting.",
+      "pooja": "Ganesh Pooja",
+      "location": "Mumbai",
+      "id": 2
+    },
+    {
+      "date": "2025-11-08",
+      "text": "The Lakshmi Pooja brought prosperity to our family. The priest was excellent and the arrangements were perfect.",
+      "pooja": "Lakshmi Pooja",
+      "name": "Mrs. Sunita Patel",
+      "rating": 5,
+      "id": 3,
+      "location": "Ahmedabad"
+    }
+  ]
+}

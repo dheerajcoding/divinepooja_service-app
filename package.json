@@ -28,6 +28,7 @@
     "eject": "react-scripts eject",
     "serve": "npx -y serve -s build",
     "server": "node server.js",
+    "seed": "node scripts/seed.js",
     "deploy": "bash deploy.sh"
   },
   "eslintConfig": {

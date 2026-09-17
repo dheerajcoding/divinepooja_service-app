@@ -57,39 +57,25 @@ const PoojaDetail = () => {
             boxShadow: '0 16px 40px rgba(198, 81, 2, 0.12)',
           }}
         >
-          {/* Responsive Header Image with Ambient Backdrop so No Image Cuts */}
           <Box
-            className="card-zoom-media"
             sx={{
-              height: { xs: 240, sm: 340, md: 420 },
+              width: '100%',
+              height: { xs: 240, sm: 340, md: 400 },
               position: 'relative',
               overflow: 'hidden',
-              backgroundColor: '#1E110A',
+              backgroundColor: '#FAF5EE',
             }}
           >
-            <Box
-              sx={{
-                position: 'absolute',
-                inset: -14,
-                backgroundImage: `url(${pooja.image})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                filter: 'blur(18px) brightness(0.6)',
-                transform: 'scale(1.15)',
-                opacity: 0.9,
-              }}
-            />
             <CardMedia
               component="img"
               image={pooja.image}
               alt={pooja.name}
+              loading="lazy"
               sx={{
-                position: 'relative',
                 height: '100%',
                 width: '100%',
-                objectFit: 'contain',
-                zIndex: 1,
-                filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.45))',
+                objectFit: 'cover',
+                objectPosition: 'center 15%',
               }}
             />
           </Box>
